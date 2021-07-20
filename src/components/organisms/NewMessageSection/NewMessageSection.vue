@@ -1,6 +1,6 @@
 <template>
   <section class="newMessageSection">
-    <SectionTitle/>
+    <SectionTitle titleText="Send a new message"/>
   </section>
 </template>
 

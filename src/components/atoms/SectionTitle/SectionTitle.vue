@@ -1,14 +1,15 @@
 <template>
 
   <header class="sectionTitle">
-    <h2 class="sectionTitle__text">Send a new message</h2>
+    <h2 class="sectionTitle__text">{{ titleText }}</h2>
   </header>
 
 </template>
 
 <script>
 export default {
-  name: "SectionTitle"
+  name: "SectionTitle",
+  props: ['titleText'],
 }
 </script>
 
