@@ -1,8 +1,8 @@
 <template>
 
-  <div class="sectionTitle">
+  <header class="sectionTitle">
     <h2 class="sectionTitle__text">Send a new message</h2>
-  </div>
+  </header>
 
 </template>
 
