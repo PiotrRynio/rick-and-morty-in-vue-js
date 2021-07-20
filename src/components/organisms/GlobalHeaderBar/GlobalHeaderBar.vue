@@ -3,10 +3,10 @@
 
     <div class="globalHeaderBar__container">
       <img class="globalHeaderBar__logo" alt="Vue logo" src="../../atoms/assets/imgs/logo.png">
-      <div class="globalHeaderBar__nav">
+      <nav class="globalHeaderBar__nav">
         <button class="globalHeaderBar__button globalHeaderBar__button--activated">New message</button>
         <button class="globalHeaderBar__button">History</button>
-      </div>
+      </nav>
     </div>
 
     <div class="globalHeaderBar__stripe"></div>
