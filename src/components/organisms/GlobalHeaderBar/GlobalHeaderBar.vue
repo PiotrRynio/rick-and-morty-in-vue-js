@@ -81,11 +81,11 @@ export default {
     background-color: $primary-color;
   }
 
-  @media (min-width: $lg-width) {
-    height: $globalHeaderBar-height-lg;
+  @media (min-width: $md-width) {
+    height: $globalHeaderBar-height-md;
 
     &__container {
-      height: $globalHeaderBar-height-lg - $stripe-height;
+      height: $globalHeaderBar-height-md - $stripe-height;
     }
   }
 }
