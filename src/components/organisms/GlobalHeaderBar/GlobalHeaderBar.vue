@@ -22,10 +22,13 @@ export default {
 
 <style scoped lang="scss">
 .globalHeaderBar {
+  $stripe-height: 24px;
+
   display: flex;
   position: fixed;
   top: 0;
   left: 0;
+  height: $globalHeaderBar-height-sm;
   width: 100vw;
   flex-flow: column nowrap;
   align-items: center;
@@ -33,7 +36,7 @@ export default {
 
   &__container {
     display: flex;
-    height: 64px;
+    height: $globalHeaderBar-height-sm - $stripe-height;
     width: 100%;
     max-width: 1040px;
     padding: 0 20px;
@@ -44,7 +47,7 @@ export default {
   }
 
   &__stripe {
-    height: 24px;
+    height: $stripe-height;
     width: 100%;
     background: $primary-color;
   }
@@ -79,12 +82,11 @@ export default {
   }
 
   @media (min-width: 1000px) {
-    .globalHeaderBar {
-      &__container {
-        height: 74px;
-      }
+    height: $globalHeaderBar-height-lg;
+
+    &__container {
+      height: $globalHeaderBar-height-lg - $stripe-height;
     }
   }
-
 }
 </style>
