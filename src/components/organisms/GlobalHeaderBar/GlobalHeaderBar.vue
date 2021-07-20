@@ -1,0 +1,90 @@
+<template>
+  <header class="globalHeaderBar">
+
+    <div class="globalHeaderBar__container">
+      <img class="globalHeaderBar__logo" alt="Vue logo" src="../../atoms/assets/imgs/logo.png">
+      <div class="globalHeaderBar__nav">
+        <button class="globalHeaderBar__button globalHeaderBar__button--activated">New message</button>
+        <button class="globalHeaderBar__button">History</button>
+      </div>
+    </div>
+
+    <div class="globalHeaderBar__stripe"></div>
+  </header>
+</template>
+
+<script>
+export default {
+  name: "GlobalHeaderBar"
+}
+
+</script>
+
+<style scoped lang="scss">
+.globalHeaderBar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  flex-flow: column nowrap;
+  align-items: center;
+  background: white;
+
+  &__container {
+    display: flex;
+    height: 64px;
+    width: 100%;
+    max-width: 1040px;
+    padding: 0 20px;
+    flex-grow: 1;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__stripe {
+    height: 24px;
+    width: 100%;
+    background: $primary-color;
+  }
+
+  &__logo {
+    height: 100%;
+    width: auto;
+    padding: 16px 0;
+  }
+
+  &__nav {
+    align-self: flex-end;
+  }
+
+  &__button {
+    padding: 8px 16px;
+    border: none 0;
+    line-height: 100%;
+    background-color: $secondary-color;
+    color: $opposite-secondary-color;
+    font-family: $primary-font-family;
+    font-size: $regular-font-size;
+  }
+
+  &__button--activated {
+    background-color: $primary-color;
+    color: $opposite-primary-color;
+  }
+
+  &__button:hover {
+    background-color: $primary-color;
+  }
+
+  @media (min-width: 1000px) {
+    .globalHeaderBar {
+      &__container {
+        height: 74px;
+      }
+    }
+  }
+
+}
+</style>
