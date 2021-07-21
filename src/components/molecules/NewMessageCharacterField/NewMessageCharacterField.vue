@@ -5,8 +5,7 @@
     <select
         class="newMessageCharacterField__input"
         :class="{'newMessageCharacterField__input--incorrect': isIncorrect}"
-        v-model="selected"
-        v-on:input="onChangeInput($event)">
+        v-model="selected">
       <option disabled value="">Pick a character</option>
       <option v-for="character in characters" v-bind:key="character.id" v-bind:value="character.id">{{
           character.title
@@ -49,16 +48,28 @@ export default {
       ]
     }
   },
+
+  watch: {
+    selected() {
+      this.validateInput()
+    }
+  },
   methods: {
-    onChangeInput: function (event) {
-      this.validateInput(event.target.value);
-    },
-    validateInput: function (value = this.selected) {
+    validateInput: function () {
       this.isIncorrect = true;
       this.formHelperTextMessage = "";
-      if (value === "") this.formHelperTextMessage = "Please enter the character";
+      if (this.selected === "") this.formHelperTextMessage = "Please enter the character";
       else this.isIncorrect = false
-      return this.isIncorrect;
+      this.emitState()
+    },
+    emitState() {
+      this.$emit('newState',
+          {
+            id: this.inputId,
+            value: this.selected,
+            isIncorrect: this.isIncorrect,
+            validate: () => this.inputValidate()
+          })
     }
   }
 }

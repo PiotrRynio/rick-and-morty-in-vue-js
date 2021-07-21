@@ -9,7 +9,6 @@
         placeholder="Enter the title"
         :id="inputId"
         type="text"
-        v-on:input="onChangeInput"
     />
     <form-helper-text :text="formHelperTextMessage"/>
   </div>
@@ -29,18 +28,37 @@ export default {
     return {
       title: "Message",
       isIncorrect: false,
-      inputId: "newMessageInput",
+      inputId: "newMessageTextInput",
       message: "",
       formHelperTextMessage: ""
     }
   },
+
+
+  watch: {
+    message() {
+      this.inputValidate();
+    }
+  },
+
   methods: {
-    onChangeInput: function () {
+    inputValidate() {
       this.isIncorrect = true;
       this.formHelperTextMessage = "";
       if (this.message.trim() === "") this.formHelperTextMessage = "Please enter the message";
       else if (this.message.length > 256) this.formHelperTextMessage = "Please enter max 256 characters";
       else this.isIncorrect = false
+      this.emitState()
+    },
+
+    emitState() {
+      this.$emit('newState',
+          {
+            id: this.inputId,
+            value: this.message,
+            isIncorrect: this.isIncorrect,
+            validate: () => this.inputValidate()
+          })
     }
   }
 }

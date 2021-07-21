@@ -21,7 +21,7 @@ export default {
   &__text {
     font-size: 24px;
     font-family: $primary-font-family;
-    font-weight: $light-font-width;
+    font-weight: $light-font-weight;
     color: $primary-text-color;
   }
 }

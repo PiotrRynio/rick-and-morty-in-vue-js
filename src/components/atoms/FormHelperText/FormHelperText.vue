@@ -22,7 +22,7 @@ export default {
   text-align: left;
   font-size: 12px;
   font-family: $primary-font-family;
-  font-weight: $regular-font-width;
+  font-weight: $regular-font-weight;
   color: rgba($primary-incorrect-color, 0.6);
 }
 </style>

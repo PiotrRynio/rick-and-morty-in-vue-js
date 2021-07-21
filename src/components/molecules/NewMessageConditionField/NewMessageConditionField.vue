@@ -1,13 +1,89 @@
 <template>
 
+  <div class="newMessageConditionField">
+    <input
+        class="newMessageConditionField__input"
+        :class="{'newMessageConditionField__input--checked': isChecked}"
+        type="checkbox"
+        id="checkbox"
+        v-model="isChecked"/>
+    <label
+        class="newMessageConditionField__label"
+        for="checkbox">
+      {{ labelText }}</label>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "NewMessageConditionField"
+  name: "NewMessageConditionField",
+  data() {
+    return {
+      inputId: "newMessageConditionField",
+      labelText: "I want to use InterGalaxy Quickpost",
+      isChecked: false,
+    }
+  },
+  watch: {
+    isChecked() {
+      this.emitState();
+    }
+  },
+  methods: {
+    onChangeInput(event) {
+      this.emitState(event.target.checked)
+    },
+    emitState() {
+      this.$emit('newState',
+          {
+            id: this.inputId,
+            value: this.isChecked,
+            isIncorrect: false,
+            validate: function () {
+            },
+          })
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.newMessageConditionField {
+  display: flex;
+  height: 24px;
+  flex-flow: nowrap row;
+  align-items: center;
 
+  &__input {
+    appearance: none;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #D6DBE4;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__input--checked {
+    background-color: $primary-color;
+  }
+
+  &__input--checked::after {
+    content: "";
+    display: block;
+    height: 20px;
+    width: 20px;
+    padding: 1px;
+    margin: 0;
+    clip-path: polygon(18% 59%, 28% 47%, 44% 59%, 78% 14%, 90% 25%, 46% 82%);
+    background-color: $opposite-primary-color;
+  }
+
+  &__label {
+    padding-left: 9px;
+    font-size: 14px;
+    font-weight: $bold-font-weight;
+    font-family: $primary-font-family;
+    cursor: pointer;
+  }
+}
 </style>

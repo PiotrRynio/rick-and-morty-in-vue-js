@@ -23,7 +23,7 @@ export default {
   text-align: left;
   font-size: 14px;
   font-family: $primary-font-family;
-  font-weight: $regular-font-width;
+  font-weight: $regular-font-weight;
   color: $primary-text-color;
 }
 

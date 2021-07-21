@@ -1,11 +1,13 @@
 <template>
   <section class="newMessageSection">
-    <form>
-      <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
-      <MessageTitleInput class="newMessageSection__inputField"/>
-      <NewMessageTextField class="newMessageSection__inputField"/>
-      <NewMessageCharacterField class="newMessageSection__inputField"/>
-    </form>
+
+    <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
+    <MessageTitleInput class="newMessageSection__inputField" @newState="setNewInputState"/>
+    <NewMessageTextField class="newMessageSection__inputField" @newState="setNewInputState"/>
+    <NewMessageCharacterField class="newMessageSection__inputField" @newState="setNewInputState"/>
+    <NewMessageConditionField class="newMessageSection__inputField" @newState="setNewInputState"/>
+    <button class="newMessageSection__button" @click="onClickButton">Send</button>
+
   </section>
 </template>
 
@@ -14,6 +16,7 @@ import SectionTitle from '../../atoms/SectionTitle/SectionTitle.vue'
 import MessageTitleInput from '../../molecules/NewMessageTitleField/NewMessageTitleField'
 import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageTextField'
 import NewMessageCharacterField from "@/components/molecules/NewMessageCharacterField/NewMessageCharacterField";
+import NewMessageConditionField from "@/components/molecules/NewMessageConditionField/NewMessageConditionField";
 
 export default {
   name: "NewMessageSection",
@@ -21,7 +24,31 @@ export default {
     SectionTitle,
     MessageTitleInput,
     NewMessageTextField,
-    NewMessageCharacterField
+    NewMessageCharacterField,
+    NewMessageConditionField,
+  },
+  data() {
+    return {
+      inputsStates: {}
+    }
+  },
+
+  methods: {
+    onClickButton() {
+      if (this.isValidationCorrect()) this.sendForm();
+    },
+    isValidationCorrect() {
+      // if (true) return false
+      return true;
+    },
+    sendForm() {
+
+    },
+
+    setNewInputState(newInputState) {
+      this.inputsStates[newInputState.id] = newInputState;
+      console.log(this.inputsStates)
+    },
   }
 }
 </script>
@@ -39,6 +66,19 @@ export default {
 
   &__inputField {
     margin-bottom: 14px;
+  }
+
+  &__button {
+    align-self: flex-end;
+    height: 40px;
+    width: 82px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: $primary-font-family;
+    background-color: $primary-color;
+    color: $opposite-primary-color;
   }
 
   @media (min-width: $md-width) {
