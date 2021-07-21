@@ -1,8 +1,10 @@
 <template>
   <section class="newMessageSection">
-    <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
-    <MessageTitleInput class="newMessageSection__inputField"/>
-    <NewMessageTextField/>
+    <form>
+      <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
+      <MessageTitleInput class="newMessageSection__inputField"/>
+      <NewMessageTextField/>
+    </form>
   </section>
 </template>
 
