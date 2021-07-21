@@ -1,6 +1,6 @@
 <template>
   <section class="newMessageSection">
-    <SectionTitle titleText="Send a new message"/>
+    <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
     <MessageTitleInput titleText="Send a new message"/>
   </section>
 </template>
@@ -22,10 +22,12 @@ export default {
 .newMessageSection {
   display: flex;
   width: 100%;
-  max-width: 1000px;
   padding: 24px 20px 0;
   flex-flow: column nowrap;
-  background-color: rgba(100, 100, 100, .2);
+
+  &__title {
+    margin-bottom: 32px;
+  }
 
   @media (min-width: $md-width) {
     padding: 32px 0 0;
