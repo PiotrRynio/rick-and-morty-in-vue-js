@@ -3,8 +3,8 @@
     <form>
       <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
       <MessageTitleInput class="newMessageSection__inputField"/>
-      <NewMessageTextField/>
-      <NewMessageCharacterField/>
+      <NewMessageTextField class="newMessageSection__inputField"/>
+      <NewMessageCharacterField class="newMessageSection__inputField"/>
     </form>
   </section>
 </template>
