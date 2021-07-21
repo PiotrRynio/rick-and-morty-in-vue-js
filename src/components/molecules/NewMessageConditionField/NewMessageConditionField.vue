@@ -29,17 +29,17 @@ export default {
       this.emitState();
     }
   },
+  mounted() {
+    this.emitState();
+  },
   methods: {
-    onChangeInput(event) {
-      this.emitState(event.target.checked)
-    },
     emitState() {
       this.$emit('newState',
           {
             id: this.inputId,
             value: this.isChecked,
             isIncorrect: false,
-            validate: function () {
+            validate: () => function () {
             },
           })
     }

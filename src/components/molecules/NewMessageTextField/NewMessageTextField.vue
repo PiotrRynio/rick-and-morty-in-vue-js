@@ -41,6 +41,10 @@ export default {
     }
   },
 
+  mounted() {
+    this.emitState();
+  },
+
   methods: {
     inputValidate() {
       this.isIncorrect = true;

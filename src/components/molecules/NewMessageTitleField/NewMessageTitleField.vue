@@ -37,6 +37,11 @@ export default {
       this.inputValidate();
     }
   },
+
+  mounted() {
+    this.emitState();
+  },
+
   methods: {
     inputValidate() {
       const format = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
@@ -49,7 +54,6 @@ export default {
       else this.isIncorrect = false
       this.emitState()
     },
-
     emitState() {
       this.$emit('newState',
           {
@@ -59,7 +63,7 @@ export default {
             validate: () => this.inputValidate()
           })
     }
-  }
+  },
 }
 </script>
 

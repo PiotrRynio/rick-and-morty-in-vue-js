@@ -51,13 +51,18 @@ export default {
 
   watch: {
     selected() {
-      this.validateInput()
+      this.inputValidate()
     }
   },
+  mounted() {
+    this.emitState();
+  },
   methods: {
-    validateInput: function () {
+    inputValidate: function () {
       this.isIncorrect = true;
       this.formHelperTextMessage = "";
+      console.log(this.selected)
+      // console.log(this."selected")
       if (this.selected === "") this.formHelperTextMessage = "Please enter the character";
       else this.isIncorrect = false
       this.emitState()

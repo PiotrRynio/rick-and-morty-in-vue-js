@@ -38,18 +38,22 @@ export default {
       if (this.isValidationCorrect()) this.sendForm();
     },
     isValidationCorrect() {
-      // if (true) return false
-      return true;
+      let isAllCorrect = true;
+      for (const key in this.inputsStates) {
+        this.inputsStates[key].validate();
+        if (this.inputsStates[key].isIncorrect || !this.inputsStates[key].value) isAllCorrect = false
+      }
+      return isAllCorrect;
     },
     sendForm() {
-
+      console.log("wysłano")
     },
 
     setNewInputState(newInputState) {
       this.inputsStates[newInputState.id] = newInputState;
       console.log(this.inputsStates)
     },
-  }
+  },
 }
 </script>
 
