@@ -76,6 +76,7 @@ export default {
   &__input {
     @include basic-text-input;
     height: 140px;
+    resize: none;
   }
 
 }
