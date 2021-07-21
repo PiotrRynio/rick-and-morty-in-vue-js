@@ -4,7 +4,7 @@
     <form-label :title="title" :is-incorrect="isIncorrect" :input-id="inputId"/>
     <input
         class="newMessageTitleField__input"
-        :class="{'newMessageTitleField--incorrect': isIncorrect}"
+        :class="{'newMessageTitleField__input--incorrect': isIncorrect}"
         v-model="messageTitle"
         placeholder="Enter the title"
         :id="inputId"
@@ -55,27 +55,7 @@ export default {
   flex-flow: nowrap column;
 
   &__input {
-    @include input-margin;
-    padding: 12px 16px;
-    border: 1px #E0E0E0 solid;
-    border-radius: 10px;
-    font-size: 14px;
-    line-height: 100%;
-    color: $primary-text-color;
-  }
-
-  &__input::placeholder {
-    color: #E0E0E0;
-  }
-
-  &__input--incorrect {
-    color: $primary-incorrect-color;
-    border-color: $primary-incorrect-color;
-  }
-
-  &__input--incorrect::placeholder {
-    color: $primary-incorrect-color;
-    border-color: $primary-incorrect-color;
+    @include basic-text-input;
   }
 }
 </style>

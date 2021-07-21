@@ -21,7 +21,7 @@ export default {
   width: 100%;
   line-height: 100%;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   font-family: $primary-font-family;
   font-weight: $regular-font-width;
   color: $primary-text-color;
