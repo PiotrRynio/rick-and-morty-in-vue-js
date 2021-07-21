@@ -1,10 +1,10 @@
 <template>
-  <div>input</div>
+
 </template>
 
 <script>
 export default {
-  name: "NewMessageTitleInput"
+  name: "NewMessageCharacterField"
 }
 </script>
 

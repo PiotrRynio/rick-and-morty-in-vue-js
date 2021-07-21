@@ -1,15 +1,20 @@
 <template>
   <section class="newMessageSection">
     <SectionTitle titleText="Send a new message"/>
+    <MessageTitleInput titleText="Send a new message"/>
   </section>
 </template>
 
 <script>
 import SectionTitle from '../../atoms/SectionTitle/SectionTitle.vue'
+import MessageTitleInput from '../../molecules/NewMessageTitleField/NewMessageTitleField'
 
 export default {
   name: "NewMessageSection",
-  components: {SectionTitle}
+  components: {
+    SectionTitle,
+    MessageTitleInput
+  }
 }
 </script>
 

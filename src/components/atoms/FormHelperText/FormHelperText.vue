@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "NewMessageTextInput"
+  name: "FormHelperText"
 }
 </script>
 
