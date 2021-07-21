@@ -21,6 +21,7 @@ export default {
 <style scoped lang="scss">
 .rickAndMorty {
   &__section {
+    max-width: 460px;
     margin: $globalHeaderBar-height-sm auto 0;
   }
 }
