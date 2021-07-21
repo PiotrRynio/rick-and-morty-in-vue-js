@@ -8,7 +8,7 @@
         v-model="selected">
       <option disabled value="">Pick a character</option>
       <option v-for="character in characters" v-bind:key="character.id" v-bind:value="character.id">{{
-          character.title
+          character.name
         }}
       </option>
     </select>
@@ -21,6 +21,7 @@
 <script>
 import FormLabel from "@/components/atoms/FormLabel/FormLabel";
 import FormHelperText from "@/components/atoms/FormHelperText/FormHelperText";
+import axios from "axios";
 
 export default {
   name: "NewMessageCharacterField",
@@ -35,17 +36,7 @@ export default {
       formHelperTextMessage: "",
       selected: '',
       isIncorrect: false,
-      characters: [
-        {id: 1, title: "Json"},
-        {id: 2, title: "Brzuszek"},
-        {id: 3, title: "Milkiway"},
-        {id: 4, title: "Czeko"},
-        {id: 5, title: "Latka"},
-        {id: 6, title: "Kayumanis"},
-        {id: 7, title: "Tulinek"},
-        {id: 8, title: "Baton"},
-        {id: 9, title: "OdP"},
-      ]
+      characters: []
     }
   },
 
@@ -55,6 +46,8 @@ export default {
     }
   },
   mounted() {
+
+    this.fetchApi()
     this.emitState();
   },
   methods: {
@@ -75,6 +68,13 @@ export default {
             isIncorrect: this.isIncorrect,
             validate: () => this.inputValidate()
           })
+    },
+    fetchApi() {
+      axios.get("https://rickandmortyapi.com/api/character")
+          .then(response => response.data)
+          .then(data => data.results)
+          .then(results => this.characters = results)
+          .catch(error => console.log(error))
     }
   }
 }
