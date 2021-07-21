@@ -10,7 +10,7 @@
     <label
         class="newMessageConditionField__label"
         for="checkbox">
-      {{ labelText }}</label>
+      {{ labelText }} </label>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       inputId: "newMessageConditionField",
-      labelText: "I want to use InterGalaxy Quickpost",
+      labelText: `I want to use InterGalaxy Quickpost\u2122`,
       isChecked: false,
     }
   },

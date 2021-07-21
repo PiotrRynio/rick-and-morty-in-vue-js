@@ -36,6 +36,7 @@ export default {
   methods: {
     onClickButton() {
       if (this.isValidationCorrect()) this.sendForm();
+      else console.log("Nie wysłano - Zła walidacja")
     },
     isValidationCorrect() {
       let isAllCorrect = true;
