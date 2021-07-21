@@ -41,18 +41,23 @@ export default {
     isValidationCorrect() {
       let isAllCorrect = true;
       for (const key in this.inputsStates) {
-        this.inputsStates[key].validate();
-        if (this.inputsStates[key].isIncorrect || !this.inputsStates[key].value) isAllCorrect = false
+        const inputStateItem = this.inputsStates[key];
+        inputStateItem.validate();
+        console.log(inputStateItem.isIncorrect)
+        console.log(inputStateItem.value)
+        const isAllIncorrect = inputStateItem.isIncorrect || (!inputStateItem.value && !inputStateItem.isValueBoolean)
+        if (isAllIncorrect) isAllCorrect = false
       }
       return isAllCorrect;
     },
     sendForm() {
-      console.log("wysłano")
+ 
+      console.log("wysłano");
     },
 
     setNewInputState(newInputState) {
       this.inputsStates[newInputState.id] = newInputState;
-      console.log(this.inputsStates)
+      // console.log(this.inputsStates)
     },
   },
 }

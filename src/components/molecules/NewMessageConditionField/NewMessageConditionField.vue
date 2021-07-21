@@ -38,6 +38,7 @@ export default {
           {
             id: this.inputId,
             value: this.isChecked,
+            isValueBoolean: true,
             isIncorrect: false,
             validate: () => function () {
             },
