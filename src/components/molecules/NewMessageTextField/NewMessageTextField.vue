@@ -24,11 +24,11 @@ export default {
     FormLabel,
     FormHelperText
   },
+  props: ['inputId'],
   data() {
     return {
       title: "Message",
       isIncorrect: false,
-      inputId: "newMessageTextInput",
       message: "",
       formHelperTextMessage: ""
     }

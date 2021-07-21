@@ -17,9 +17,9 @@
 <script>
 export default {
   name: "NewMessageConditionField",
+  props: ['inputId'],
   data() {
     return {
-      inputId: "newMessageConditionField",
       labelText: `I want to use InterGalaxy Quickpost\u2122`,
       isChecked: false,
     }

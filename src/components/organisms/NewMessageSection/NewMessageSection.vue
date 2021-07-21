@@ -2,10 +2,12 @@
   <section class="newMessageSection">
 
     <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
-    <MessageTitleInput class="newMessageSection__inputField" @newState="setNewInputState"/>
-    <NewMessageTextField class="newMessageSection__inputField" @newState="setNewInputState"/>
-    <NewMessageCharacterField class="newMessageSection__inputField" @newState="setNewInputState"/>
-    <NewMessageConditionField class="newMessageSection__inputField" @newState="setNewInputState"/>
+    <MessageTitleInput class="newMessageSection__inputField" @newState="setNewInputState" :input-id="inputId.title"/>
+    <NewMessageTextField class="newMessageSection__inputField" @newState="setNewInputState" :input-id="inputId.text"/>
+    <NewMessageCharacterField class="newMessageSection__inputField" @newState="setNewInputState"
+                              :input-id="inputId.character"/>
+    <NewMessageConditionField class="newMessageSection__inputField" @newState="setNewInputState"
+                              :input-id="inputId.condition"/>
     <button class="newMessageSection__button" @click="onClickButton">Send</button>
 
   </section>
@@ -29,6 +31,12 @@ export default {
   },
   data() {
     return {
+      inputId: {
+        title: "newMessageTitleField",
+        text: "newMessageTextField",
+        character: "newMessageCharacterField",
+        condition: "newMessageConditionField",
+      },
       inputsStates: {}
     }
   },
@@ -43,21 +51,28 @@ export default {
       for (const key in this.inputsStates) {
         const inputStateItem = this.inputsStates[key];
         inputStateItem.validate();
-        console.log(inputStateItem.isIncorrect)
-        console.log(inputStateItem.value)
         const isAllIncorrect = inputStateItem.isIncorrect || (!inputStateItem.value && !inputStateItem.isValueBoolean)
         if (isAllIncorrect) isAllCorrect = false
       }
       return isAllCorrect;
     },
     sendForm() {
- 
-      console.log("wysłano");
+      const localStorageKey = "rick-and-morty-app-data";
+      const newData = {
+        title: this.inputsStates[this.inputId.title].value,
+        message: this.inputsStates[this.inputId.text].value,
+        character: this.inputsStates[this.inputId.character].value,
+        isConditionChecked: this.inputsStates[this.inputId.condition].value,
+        date: new Date(),
+      }
+      const storageData = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+      storageData.push(newData)
+      localStorage.setItem(localStorageKey, JSON.stringify(storageData));
+      console.log(JSON.parse(localStorage.getItem(localStorageKey)) || [])
     },
 
     setNewInputState(newInputState) {
       this.inputsStates[newInputState.id] = newInputState;
-      // console.log(this.inputsStates)
     },
   },
 }

@@ -29,10 +29,10 @@ export default {
     FormLabel,
     FormHelperText
   },
+  props: ['inputId'],
   data() {
     return {
       title: "Character",
-      inputId: "NewMessageCharacterField",
       formHelperTextMessage: "",
       selected: '',
       isIncorrect: false,
@@ -54,8 +54,6 @@ export default {
     inputValidate: function () {
       this.isIncorrect = true;
       this.formHelperTextMessage = "";
-      console.log(this.selected)
-      // console.log(this."selected")
       if (this.selected === "") this.formHelperTextMessage = "Please enter the character";
       else this.isIncorrect = false
       this.emitState()
