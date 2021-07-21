@@ -8,7 +8,6 @@
         v-model="messageTitle"
         placeholder="Enter the title"
         :id="inputId"
-        type="text"
         v-on:input="onChangeInput"
     />
     <form-helper-text :text="formHelperTextMessage"/>

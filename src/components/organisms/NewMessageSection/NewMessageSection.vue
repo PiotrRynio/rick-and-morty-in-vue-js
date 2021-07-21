@@ -4,6 +4,7 @@
       <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
       <MessageTitleInput class="newMessageSection__inputField"/>
       <NewMessageTextField/>
+      <NewMessageCharacterField/>
     </form>
   </section>
 </template>
@@ -12,13 +13,15 @@
 import SectionTitle from '../../atoms/SectionTitle/SectionTitle.vue'
 import MessageTitleInput from '../../molecules/NewMessageTitleField/NewMessageTitleField'
 import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageTextField'
+import NewMessageCharacterField from "@/components/molecules/NewMessageCharacterField/NewMessageCharacterField";
 
 export default {
   name: "NewMessageSection",
   components: {
     SectionTitle,
     MessageTitleInput,
-    NewMessageTextField
+    NewMessageTextField,
+    NewMessageCharacterField
   }
 }
 </script>
