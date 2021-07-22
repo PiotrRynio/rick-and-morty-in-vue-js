@@ -22,6 +22,7 @@ import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageT
 import NewMessageCharacterField from "@/components/molecules/NewMessageCharacterField/NewMessageCharacterField";
 import NewMessageConditionField from "@/components/molecules/NewMessageConditionField/NewMessageConditionField";
 import router from "@/router/router";
+import {v4 as uuidv4} from 'uuid';
 
 export default {
   name: "NewMessageSection",
@@ -62,6 +63,7 @@ export default {
     sendForm() {
       const localStorageKey = "rick-and-morty-app-data";
       const newData = {
+        id: uuidv4(),
         title: this.inputsStates[this.inputId.title].value,
         message: this.inputsStates[this.inputId.text].value,
         character: this.inputsStates[this.inputId.character].value,
