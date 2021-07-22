@@ -1,25 +1,26 @@
 <template>
-  <div id="app">
-    <RickAndMorty/>
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import RickAndMorty from './components/pages/RickAndMorty/RickAndMorty.vue'
+<script>
+import HelloWorld from './components/HelloWorld.vue'
 
-
-@Component({
+export default {
+  name: 'App',
   components: {
-    RickAndMorty
-  },
-})
-export default class App extends Vue {
+    HelloWorld
+  }
 }
 </script>
 
-<style lang="scss">
+<style>
 #app {
-  background: $secondary-color;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
