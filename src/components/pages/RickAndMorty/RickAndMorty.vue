@@ -1,19 +1,18 @@
 <template>
   <div class="rickAndMorty">
     <GlobalHeaderBar/>
-    <NewMessageSection class="rickAndMorty__section"/>
+    <router-view class="rickAndMorty__section"/>
+
   </div>
 </template>
 
 <script>
 import GlobalHeaderBar from '../../organisms/GlobalHeaderBar/GlobalHeaderBar.vue'
-import NewMessageSection from '../../organisms/NewMessageSection/NewMessageSection'
 
 export default {
   name: "RickAndMorty",
   components: {
     GlobalHeaderBar,
-    NewMessageSection
   }
 }
 </script>

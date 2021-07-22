@@ -4,9 +4,11 @@
     <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
     <MessageTitleInput class="newMessageSection__inputField" @newState="setNewInputState" :input-id="inputId.title"/>
     <NewMessageTextField class="newMessageSection__inputField" @newState="setNewInputState" :input-id="inputId.text"/>
-    <NewMessageCharacterField class="newMessageSection__inputField" @newState="setNewInputState"
+    <NewMessageCharacterField class="newMessageSection__inputField"
+                              @newState="setNewInputState"
                               :input-id="inputId.character"/>
-    <NewMessageConditionField class="newMessageSection__inputField" @newState="setNewInputState"
+    <NewMessageConditionField class="newMessageSection__inputField"
+                              @newState="setNewInputState"
                               :input-id="inputId.condition"/>
     <button class="newMessageSection__button" @click="onClickButton">Send</button>
 

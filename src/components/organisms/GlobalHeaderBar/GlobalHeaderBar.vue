@@ -4,8 +4,19 @@
     <div class="globalHeaderBar__container">
       <img class="globalHeaderBar__logo" alt="Vue logo" src="../../atoms/assets/imgs/logo.png">
       <nav class="globalHeaderBar__nav">
-        <button class="globalHeaderBar__button globalHeaderBar__button--activated">New message</button>
-        <button class="globalHeaderBar__button">History</button>
+        <router-link
+            to="/"
+            active-class="globalHeaderBar__button--activated"
+            class="globalHeaderBar__button">
+          New message
+        </router-link>
+        <router-link
+            to="/history"
+            active-class="globalHeaderBar__button--activated"
+            class="globalHeaderBar__button">
+          History
+        </router-link>
+<!--        {{ $route.name}}-->
       </nav>
     </div>
 
@@ -15,9 +26,14 @@
 
 <script>
 export default {
-  name: "GlobalHeaderBar"
-}
+  name: "GlobalHeaderBar",
+  data() {
+    return {
+      // routePath:  {{ $route.name}},
 
+    }
+  },
+}
 </script>
 
 <style scoped lang="scss">
@@ -59,10 +75,12 @@ export default {
   }
 
   &__nav {
+    display: flex;
     align-self: flex-end;
   }
 
   &__button {
+    display: block;
     padding: 8px 16px;
     border: none 0;
     line-height: 100%;
@@ -70,6 +88,7 @@ export default {
     color: $opposite-secondary-color;
     font-family: $primary-font-family;
     font-size: $regular-font-size;
+    text-decoration: none;
   }
 
   &__button--activated {
