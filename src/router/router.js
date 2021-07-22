@@ -10,12 +10,17 @@ const routes = [
     name: "NotFound",
     component: NewMessageSection,
     alias: '/'
-  },  {
+  }, {
     path: "/",
     name: "Home",
     component: NewMessageSection,
   },
   {
+    path: "/history/:information",
+    name: "HistoryWithInformation",
+    component: MessageHistorySection,
+    alias: '/history'
+  }, {
     path: "/history",
     name: "History",
     component: MessageHistorySection,

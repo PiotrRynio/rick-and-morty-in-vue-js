@@ -21,6 +21,7 @@ import MessageTitleInput from '../../molecules/NewMessageTitleField/NewMessageTi
 import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageTextField'
 import NewMessageCharacterField from "@/components/molecules/NewMessageCharacterField/NewMessageCharacterField";
 import NewMessageConditionField from "@/components/molecules/NewMessageConditionField/NewMessageConditionField";
+import router from "@/router/router";
 
 export default {
   name: "NewMessageSection",
@@ -71,6 +72,8 @@ export default {
       storageData.push(newData)
       localStorage.setItem(localStorageKey, JSON.stringify(storageData));
       console.log(JSON.parse(localStorage.getItem(localStorageKey)) || [])
+
+      router.replace("/history/success")
     },
 
     setNewInputState(newInputState) {
