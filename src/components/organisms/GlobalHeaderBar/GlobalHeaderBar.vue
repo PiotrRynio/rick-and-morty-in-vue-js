@@ -27,12 +27,6 @@
 <script>
 export default {
   name: "GlobalHeaderBar",
-  data() {
-    return {
-      // routePath:  {{ $route.name}},
-
-    }
-  },
 }
 </script>
 
