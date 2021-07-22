@@ -4,17 +4,15 @@
   </div>
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import RickAndMorty from './components/pages/RickAndMorty/RickAndMorty.vue'
+<script>
 
+import RickAndMorty from "@/components/pages/RickAndMorty/RickAndMorty";
 
-@Component({
+export default {
+  name: 'App',
   components: {
     RickAndMorty
-  },
-})
-export default class App extends Vue {
+  }
 }
 </script>
 
