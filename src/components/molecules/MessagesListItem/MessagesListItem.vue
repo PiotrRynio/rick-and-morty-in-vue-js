@@ -20,19 +20,8 @@
             <span class="messagesListItem__detailsItem messagesListItem__detailsItem"
               >Sent to: {{ characterData.name }}</span
             >
-            <span class="messagesListItem__detailsItem">
-              Date:
-              {{ new Date(messageState.date).getDay() }}
-              .{{ new Date(messageState.date).getMonth() }} .{{
-                new Date(messageState.date).getFullYear()
-              }}
-            </span>
-            <span class="messagesListItem__detailsItem">
-              At:
-              {{ new Date(messageState.date).getHours() }}:{{
-                new Date(messageState.date).getMinutes()
-              }}
-            </span>
+            <span class="messagesListItem__detailsItem"> Date: {{ getDateText() }} </span>
+            <span class="messagesListItem__detailsItem"> At: {{ getTimeText() }} </span>
           </div>
 
           <div class="messagesListItem__detailsItemsGroup">
@@ -76,6 +65,26 @@ export default {
   methods: {
     async fetchCharacterFromApi() {
       this.characterData = await RickAndMortyApi().getCharacter(this.messageState.characterId);
+    },
+    getDateText() {
+      const getDay = () => new Date(this.messageState.date).getDay();
+      const getMonth = () => new Date(this.messageState.date).getMonth();
+      const getFullYear = () => new Date(this.messageState.date).getFullYear();
+
+      const day = getDay() < 10 ? `0${getDay()}` : getDay();
+      const month = getMonth() < 10 ? `0${getMonth()}` : getMonth();
+      const year = getFullYear();
+
+      return `${day}.${month}.${year}`;
+    },
+    getTimeText() {
+      const getHours = () => new Date(this.messageState.date).getHours();
+      const getMinutes = () => new Date(this.messageState.date).getMinutes();
+
+      const hours = getHours() < 10 ? `0${getHours()}` : getHours();
+      const minutes = getMinutes() < 10 ? `0${getMinutes()}` : getMinutes();
+
+      return `${hours}:${minutes}`;
     },
   },
 };
