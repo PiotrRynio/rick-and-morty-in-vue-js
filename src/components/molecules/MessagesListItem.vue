@@ -25,7 +25,7 @@
                       Date:
                       {{ new Date(messageState.date).getDay() }}
                       .{{ new Date(messageState.date).getMonth() }}
-                      .{{ new Date(messageState.date).getYear() }}
+                      .{{ new Date(messageState.date).getFullYear() }}
             </span>
             <span class="messagesListItem__detailsItem">
             At:
@@ -33,14 +33,20 @@
           </div>
 
           <div class="messagesListItem__detailsItemsGroup">
-            <span class="messagesListItem__detailsItem messagesListItem__detailsItem--quickpost">
+            <span
+                class="messagesListItem__detailsItem messagesListItem__detailsItem--quickpost"
+                :class='{"messagesListItem__detailsItem--hidden": !messageState.isConditionChecked}'>
               <img src="@/components/atoms/assets/icons/check.png" class="messagesListItem__checkIcon"/>
               Using Quickpost™
             </span>
           </div>
         </div>
       </div>
-      <article class="messagesListItem__content">{{ messageState.message }}</article>
+      <article
+          class="messagesListItem__content"
+          :class='{"messagesListItem__content--shown":isShown}'>
+        {{ messageState.message }}
+      </article>
       <!--            <h3 class="messagesListItem__title"> {{ messageState.title }}</h3>-->
     </section>
 
@@ -111,18 +117,18 @@ export default {
   }
 
   &__body {
-    display: none;
+    height: 0;
+    overflow: hidden;
   }
 
   &__body--shown {
-    display: block;
+    height: auto;
   }
 
   &__details {
     display: flex;
     flex-flow: nowrap row;
     border-left: #E0E0E0 solid 1px;
-
   }
 
   &__recipientPhoto {
@@ -158,6 +164,10 @@ export default {
     align-items: center;
   }
 
+  &__detailsItem--hidden {
+    display: none;
+  }
+
   &__checkIcon {
     height: 13.43px;
     width: 17px;
@@ -167,6 +177,12 @@ export default {
   &__content {
     padding: 24px 0 21px;
   }
+
+  &__content--shown {
+    animation-duration: .5s;
+    animation-name: showing-messages-list-item-content-animation;
+    animation-fill-mode: both;
+  }
 }
 
 @media (min-width: $md-screen-width) {
@@ -175,6 +191,15 @@ export default {
       font-size: 16px;
     }
   }
+}
 
+@keyframes showing-messages-list-item-content-animation {
+  0% {
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 </style>
