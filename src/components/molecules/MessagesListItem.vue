@@ -1,7 +1,10 @@
 <template>
   <div class="messagesListItem">
 
-    <header class="messagesListItem__header">
+    <header
+        class="messagesListItem__header"
+        v-on:click="()=>showingMessageFunction(messageState.id)">
+      
       <h3 class="messagesListItem__title"> {{ messageState.title }}</h3>
       <img
           src="@/components/atoms/assets/icons/arrow.png"
@@ -62,7 +65,7 @@ import axios from "axios";
 
 export default {
   name: "MessagesListItem",
-  props: ['messageState', 'isShown'],
+  props: ['messageState', 'isShown', 'showingMessageFunction'],
   mounted() {
     this.fetchCharacterNameFromApi()
   },

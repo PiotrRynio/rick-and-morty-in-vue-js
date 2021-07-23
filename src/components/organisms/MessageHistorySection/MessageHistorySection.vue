@@ -14,7 +14,7 @@
         <MessagesListItem
             :messageState="message"
             :isShown="shownMessageId===message.id"
-            v-on:click="()=>toggleShownMessageId(message.id)"/>
+            :showingMessageFunction="toggleShownMessageId"/>
       </li>
     </ul>
 
@@ -41,12 +41,11 @@ export default {
       const localStorageKey = "rick-and-morty-app-data";
       return JSON.parse(localStorage.getItem(localStorageKey)) || [];
     },
-
   },
   data() {
     return {
       isAlertShown: router.currentRoute.value.params.information === "success",
-      shownMessageId: "0b692f91sc-67e87842ea30",
+      shownMessageId: "",
       messages: this.loadStorageMessage(),
     }
   }
