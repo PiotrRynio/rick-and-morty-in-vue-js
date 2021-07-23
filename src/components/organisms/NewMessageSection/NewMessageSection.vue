@@ -32,7 +32,7 @@ import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageT
 import NewMessageCharacterField from '@/components/molecules/NewMessageCharacterField/NewMessageCharacterField';
 import NewMessageConditionField from '@/components/molecules/NewMessageConditionField/NewMessageConditionField';
 import router from '@/router/router';
-import { DatabaseConnection } from '@/database-connection/database-connection';
+import { DatabaseApi } from '@/database-connection/database-api';
 
 export default {
   name: 'NewMessageSection',
@@ -79,7 +79,7 @@ export default {
         isConditionChecked: this.inputsStates[this.inputId.condition].value,
         date: new Date(),
       };
-      DatabaseConnection().postMessage(newData);
+      DatabaseApi().postMessage(newData);
       router.replace('/history/success');
     },
 

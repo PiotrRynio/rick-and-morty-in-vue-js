@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const DatabaseConnection = () => {
+export const DatabaseApi = () => {
   const localStorageKey = 'rick-and-morty-app-data';
   const storageData = JSON.parse(localStorage.getItem(localStorageKey)) || [];
 

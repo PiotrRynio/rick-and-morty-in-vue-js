@@ -27,7 +27,7 @@
 import SectionTitle from '@/components/atoms/SectionTitle/SectionTitle';
 import router from '@/router/router';
 import MessagesListItem from '@/components/molecules/MessagesListItem';
-import { DatabaseConnection } from '@/database-connection/database-connection';
+import { DatabaseApi } from '@/database-connection/database-api';
 
 export default {
   name: 'MessageHistorySection',
@@ -41,7 +41,7 @@ export default {
       else this.shownMessageId = newMessageId;
     },
     loadStorageMessage() {
-      return DatabaseConnection().getAllMessages();
+      return DatabaseApi().getAllMessages();
     },
   },
   data() {
