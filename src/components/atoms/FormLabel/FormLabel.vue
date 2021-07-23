@@ -31,7 +31,7 @@ export default {
   color: $primary-incorrect-color;
 }
 
-@media (min-width: $md-width) {
+@media (min-width: $md-screen-width) {
   .formLabel {
     font-size: 16px;
   }

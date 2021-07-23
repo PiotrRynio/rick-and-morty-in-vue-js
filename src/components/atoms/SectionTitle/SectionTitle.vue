@@ -26,7 +26,7 @@ export default {
   }
 }
 
-@media (min-width: $md-width) {
+@media (min-width: $md-screen-width) {
   .sectionTitle {
     width: 100%;
     text-align: center;

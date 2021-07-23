@@ -25,7 +25,7 @@ export default {
   }
 }
 
-@media (min-width: $md-width) {
+@media (min-width: $md-screen-width) {
   .rickAndMorty {
     &__section {
       margin-top: $globalHeaderBar-height-md;

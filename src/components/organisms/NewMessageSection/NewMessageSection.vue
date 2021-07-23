@@ -113,7 +113,7 @@ export default {
     color: $opposite-primary-color;
   }
 
-  @media (min-width: $md-width) {
+  @media (min-width: $md-screen-width) {
     padding: 32px 0 0;
   }
 }

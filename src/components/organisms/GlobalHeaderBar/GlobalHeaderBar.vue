@@ -94,7 +94,7 @@ export default {
     background-color: $primary-color;
   }
 
-  @media (min-width: $md-width) {
+  @media (min-width: $md-screen-width) {
     height: $globalHeaderBar-height-md;
 
     &__container {
