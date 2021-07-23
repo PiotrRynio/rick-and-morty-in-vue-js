@@ -48,8 +48,8 @@ export default {
     const emitState = () =>
       emit('newState', {
         id: props.inputId,
-        value: message,
-        isIncorrect: isIncorrect,
+        value: message.value,
+        isIncorrect: isIncorrect.value,
         validate: () => inputValidate(),
       });
 

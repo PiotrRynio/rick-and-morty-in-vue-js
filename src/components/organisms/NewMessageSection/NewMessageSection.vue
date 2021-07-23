@@ -4,22 +4,22 @@
     <MessageTitleInput
       class="newMessageSection__inputField"
       @newState="setNewInputState"
-      :input-id="inputId.title"
+      :input-id="inputsIds.title"
     />
     <NewMessageTextField
       class="newMessageSection__inputField"
       @newState="setNewInputState"
-      :input-id="inputId.text"
+      :input-id="inputsIds.text"
     />
     <NewMessageCharacterField
       class="newMessageSection__inputField"
       @newState="setNewInputState"
-      :input-id="inputId.characterId"
+      :input-id="inputsIds.characterId"
     />
     <NewMessageConditionField
       class="newMessageSection__inputField"
       @newState="setNewInputState"
-      :input-id="inputId.condition"
+      :input-id="inputsIds.condition"
     />
     <button class="newMessageSection__button" @click="onClickButton">Send</button>
   </section>
@@ -43,35 +43,29 @@ export default {
     NewMessageCharacterField,
     NewMessageConditionField,
   },
-  data() {
-    return {
-      inputId: {
-        title: 'newMessageTitleField',
-        text: 'newMessageTextField',
-        characterId: 'newMessageCharacterField',
-        condition: 'newMessageConditionField',
-      },
-      inputsStates: {},
-    };
-  },
 
-  methods: {
-    onClickButton() {
-      if (this.isValidationCorrect()) this.sendForm();
-    },
-    isValidationCorrect() {
+  setup() {
+    const inputsIds = {
+      title: 'newMessageTitleField',
+      text: 'newMessageTextField',
+      characterId: 'newMessageCharacterField',
+      condition: 'newMessageConditionField',
+    };
+    const inputsStates = {};
+
+    const isValidationCorrect = () => {
       let isAllCorrect = true;
-      for (const key in this.inputsStates) {
-        const { isIncorrect, isValueBoolean, validate, value } = this.inputsStates[key];
+      for (const key in inputsStates) {
+        const { isIncorrect, isValueBoolean, validate, value } = inputsStates[key];
         validate();
         const isAllIncorrect = isIncorrect || (!value && !isValueBoolean);
         if (isAllIncorrect) isAllCorrect = false;
       }
       return isAllCorrect;
-    },
-    sendForm() {
-      const { inputsStates, inputId } = this;
-      const { characterId, text, title, condition } = inputId;
+    };
+
+    const sendForm = () => {
+      const { characterId, text, title, condition } = inputsIds;
       const newData = {
         title: inputsStates[title].value,
         message: inputsStates[text].value,
@@ -81,10 +75,18 @@ export default {
       };
       DatabaseApi().postMessage(newData);
       router.replace('/history/success');
-    },
-    setNewInputState(newInputState) {
-      this.inputsStates[newInputState.id] = newInputState;
-    },
+    };
+
+    const onClickButton = () => (isValidationCorrect() ? sendForm() : '');
+
+    const setNewInputState = (newInputState) => (inputsStates[newInputState.id] = newInputState);
+
+    return {
+      inputsIds,
+      inputsStates,
+      onClickButton,
+      setNewInputState,
+    };
   },
 };
 </script>

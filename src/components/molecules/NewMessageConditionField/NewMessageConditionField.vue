@@ -26,7 +26,7 @@ export default {
     const emitState = () =>
       emit('newState', {
         id: props.inputId,
-        value: isChecked,
+        value: isChecked.value,
         isValueBoolean: true,
         isIncorrect: false,
         validate: () => function () {},
