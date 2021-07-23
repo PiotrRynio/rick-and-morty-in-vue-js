@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.{js, ts,tsx, md, json}\""
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -24,8 +26,11 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
     "node-sass": "^4.0.1",
+    "prettier": "2.3.2",
     "sass": "^1.35.2",
-    "sass-loader": "^10.2.0"
+    "sass-loader": "^10.2.0",
+    "lint-staged": "^11.0.0",
+    "husky": "^6.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -45,5 +50,8 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "lint-staged": {
+    "*.{jsx, tsx, ts, js,css,md}": "prettier --write"
+  }
 }

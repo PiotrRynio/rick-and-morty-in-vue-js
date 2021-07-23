@@ -4,7 +4,7 @@
     <header
         class="messagesListItem__header"
         v-on:click="()=>showingMessageFunction(messageState.id)">
-      
+
       <h3 class="messagesListItem__title"> {{ messageState.title }}</h3>
       <img
           src="@/components/atoms/assets/icons/arrow.png"
