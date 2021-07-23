@@ -1,20 +1,19 @@
 <template>
   <div class="rickAndMorty">
-    <GlobalHeaderBar/>
-    <router-view class="rickAndMorty__section"/>
-
+    <GlobalHeaderBar />
+    <router-view class="rickAndMorty__section" />
   </div>
 </template>
 
 <script>
-import GlobalHeaderBar from '../../organisms/GlobalHeaderBar/GlobalHeaderBar.vue'
+import GlobalHeaderBar from '../../organisms/GlobalHeaderBar/GlobalHeaderBar.vue';
 
 export default {
-  name: "RickAndMorty",
+  name: 'RickAndMorty',
   components: {
     GlobalHeaderBar,
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

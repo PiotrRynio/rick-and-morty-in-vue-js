@@ -1,51 +1,46 @@
 <template>
-
   <div class="newMessageConditionField">
     <input
-        class="newMessageConditionField__input"
-        :class="{'newMessageConditionField__input--checked': isChecked}"
-        type="checkbox"
-        id="checkbox"
-        v-model="isChecked"/>
-    <label
-        class="newMessageConditionField__label"
-        for="checkbox">
-      {{ labelText }} </label>
+      class="newMessageConditionField__input"
+      :class="{ 'newMessageConditionField__input--checked': isChecked }"
+      type="checkbox"
+      id="checkbox"
+      v-model="isChecked"
+    />
+    <label class="newMessageConditionField__label" for="checkbox"> {{ labelText }} </label>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NewMessageConditionField",
+  name: 'NewMessageConditionField',
   props: ['inputId'],
   data() {
     return {
       labelText: `I want to use InterGalaxy Quickpost\u2122`,
       isChecked: false,
-    }
+    };
   },
   watch: {
     isChecked() {
       this.emitState();
-    }
+    },
   },
   mounted() {
     this.emitState();
   },
   methods: {
     emitState() {
-      this.$emit('newState',
-          {
-            id: this.inputId,
-            value: this.isChecked,
-            isValueBoolean: true,
-            isIncorrect: false,
-            validate: () => function () {
-            },
-          })
-    }
-  }
-}
+      this.$emit('newState', {
+        id: this.inputId,
+        value: this.isChecked,
+        isValueBoolean: true,
+        isIncorrect: false,
+        validate: () => function () {},
+      });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -59,7 +54,7 @@ export default {
     appearance: none;
     height: 24px;
     width: 24px;
-    border: 1px solid #D6DBE4;
+    border: 1px solid #d6dbe4;
     border-radius: 4px;
     cursor: pointer;
   }
@@ -69,7 +64,7 @@ export default {
   }
 
   &__input--checked::after {
-    content: "";
+    content: '';
     display: block;
     height: 20px;
     width: 20px;

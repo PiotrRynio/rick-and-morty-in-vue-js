@@ -1,22 +1,23 @@
 <template>
   <header class="globalHeaderBar">
-
     <div class="globalHeaderBar__container">
-      <img class="globalHeaderBar__logo" alt="Vue logo" src="../../atoms/assets/imgs/logo.png">
+      <img class="globalHeaderBar__logo" alt="Vue logo" src="../../atoms/assets/imgs/logo.png" />
       <nav class="globalHeaderBar__nav">
         <router-link
-            to="/"
-            active-class="globalHeaderBar__button--activated"
-            class="globalHeaderBar__button">
+          to="/"
+          active-class="globalHeaderBar__button--activated"
+          class="globalHeaderBar__button"
+        >
           New message
         </router-link>
         <router-link
-            to="/history"
-            active-class="globalHeaderBar__button--activated"
-            class="globalHeaderBar__button">
+          to="/history"
+          active-class="globalHeaderBar__button--activated"
+          class="globalHeaderBar__button"
+        >
           History
         </router-link>
-<!--        {{ $route.name}}-->
+        <!--        {{ $route.name}}-->
       </nav>
     </div>
 
@@ -26,8 +27,8 @@
 
 <script>
 export default {
-  name: "GlobalHeaderBar",
-}
+  name: 'GlobalHeaderBar',
+};
 </script>
 
 <style scoped lang="scss">

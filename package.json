@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prepare": "husky install",
-    "format": "prettier --write \"src/**/*.{js, ts,tsx, md, json}\""
+    "format": "prettier --write \"src/**/*.{js,ts,tsx,md,json,vue}\""
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -52,6 +52,6 @@
     "not dead"
   ],
   "lint-staged": {
-    "*.{jsx,tsx,ts,js,css,md,vue}": "prettier --write"
+    "*.{jsx,tsx,ts,js,css,md,vue,json}": "prettier --write"
   }
 }

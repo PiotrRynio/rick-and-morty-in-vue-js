@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: "FormHelperText",
+  name: 'FormHelperText',
   props: {
     text: String,
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

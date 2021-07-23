@@ -1,97 +1,97 @@
 <template>
   <div class="messagesListItem">
-
     <header
-        class="messagesListItem__header"
-        v-on:click="()=>showingMessageFunction(messageState.id)">
-
-      <h3 class="messagesListItem__title"> {{ messageState.title }}</h3>
+      class="messagesListItem__header"
+      v-on:click="() => showingMessageFunction(messageState.id)"
+    >
+      <h3 class="messagesListItem__title">{{ messageState.title }}</h3>
       <img
-          src="@/components/atoms/assets/icons/arrow.png"
-          class="messagesListItem__arrow"
-          :class="{'messagesListItem__arrow--reverse': isShown}"/>
+        src="@/components/atoms/assets/icons/arrow.png"
+        class="messagesListItem__arrow"
+        :class="{ 'messagesListItem__arrow--reverse': isShown }"
+      />
     </header>
 
-    <section
-        class="messagesListItem__body"
-        :class='{"messagesListItem__body--shown":isShown}'>
-
+    <section class="messagesListItem__body" :class="{ 'messagesListItem__body--shown': isShown }">
       <div class="messagesListItem__details">
-        <img v-bind:src="characterData.image" class="messagesListItem__recipientPhoto"/>
+        <img v-bind:src="characterData.image" class="messagesListItem__recipientPhoto" />
         <div class="messagesListItem__detailsItemsBox">
           <div class="messagesListItem__detailsItemsGroup">
-            <span
-                class="messagesListItem__detailsItem messagesListItem__detailsItem">Sent to: {{
-                characterData.name
-              }}</span>
+            <span class="messagesListItem__detailsItem messagesListItem__detailsItem"
+              >Sent to: {{ characterData.name }}</span
+            >
             <span class="messagesListItem__detailsItem">
-                      Date:
-                      {{ new Date(messageState.date).getDay() }}
-                      .{{ new Date(messageState.date).getMonth() }}
-                      .{{ new Date(messageState.date).getFullYear() }}
+              Date:
+              {{ new Date(messageState.date).getDay() }}
+              .{{ new Date(messageState.date).getMonth() }} .{{
+                new Date(messageState.date).getFullYear()
+              }}
             </span>
             <span class="messagesListItem__detailsItem">
-            At:
-            {{ new Date(messageState.date).getHours() }}:{{ new Date(messageState.date).getMinutes() }}  </span>
+              At:
+              {{ new Date(messageState.date).getHours() }}:{{
+                new Date(messageState.date).getMinutes()
+              }}
+            </span>
           </div>
 
           <div class="messagesListItem__detailsItemsGroup">
             <span
-                class="messagesListItem__detailsItem messagesListItem__detailsItem--quickpost"
-                :class='{"messagesListItem__detailsItem--hidden": !messageState.isConditionChecked}'>
-              <img src="@/components/atoms/assets/icons/check.png" class="messagesListItem__checkIcon"/>
+              class="messagesListItem__detailsItem messagesListItem__detailsItem--quickpost"
+              :class="{ 'messagesListItem__detailsItem--hidden': !messageState.isConditionChecked }"
+            >
+              <img
+                src="@/components/atoms/assets/icons/check.png"
+                class="messagesListItem__checkIcon"
+              />
               Using Quickpost™
             </span>
           </div>
         </div>
       </div>
       <article
-          class="messagesListItem__content"
-          :class='{"messagesListItem__content--shown":isShown}'>
+        class="messagesListItem__content"
+        :class="{ 'messagesListItem__content--shown': isShown }"
+      >
         {{ messageState.message }}
       </article>
       <!--            <h3 class="messagesListItem__title"> {{ messageState.title }}</h3>-->
     </section>
-
-
   </div>
-
 </template>
 
 <script>
-
-
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "MessagesListItem",
+  name: 'MessagesListItem',
   props: ['messageState', 'isShown', 'showingMessageFunction'],
   mounted() {
-    this.fetchCharacterNameFromApi()
+    this.fetchCharacterNameFromApi();
   },
   data() {
     return {
-      characterData: ""
-    }
+      characterData: '',
+    };
   },
   methods: {
     async fetchCharacterNameFromApi() {
-      return await axios.get("https://rickandmortyapi.com/api/character/" + this.messageState.character)
-          .then(response => response.data)
-          .then(data => this.characterData = data)
-          .catch(error => console.log(error))
+      return await axios
+        .get('https://rickandmortyapi.com/api/character/' + this.messageState.character)
+        .then((response) => response.data)
+        .then((data) => (this.characterData = data))
+        .catch((error) => console.log(error));
     },
   },
   date() {
-    return {}
-  }
-
-}
+    return {};
+  },
+};
 </script>
 
 <style scoped lang="scss">
 .messagesListItem {
-  border-bottom: #E0E0E0 solid 1px;
+  border-bottom: #e0e0e0 solid 1px;
   font-size: 14px;
   font-family: $primary-font-family;
   color: $primary-text-color;
@@ -131,7 +131,7 @@ export default {
   &__details {
     display: flex;
     flex-flow: nowrap row;
-    border-left: #E0E0E0 solid 1px;
+    border-left: #e0e0e0 solid 1px;
   }
 
   &__recipientPhoto {
@@ -140,7 +140,6 @@ export default {
     border-radius: 50%;
     margin: 0 6px;
     background-color: #ccc;
-
   }
 
   &__detailsItemsBox {
@@ -148,7 +147,6 @@ export default {
     width: 100%;
     flex-flow: row nowrap;
     justify-content: space-between;
-
   }
 
   &__detailsItemsGroup {
@@ -182,7 +180,7 @@ export default {
   }
 
   &__content--shown {
-    animation-duration: .5s;
+    animation-duration: 0.5s;
     animation-name: showing-messages-list-item-content-animation;
     animation-fill-mode: both;
   }
