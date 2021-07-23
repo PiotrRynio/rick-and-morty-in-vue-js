@@ -23,7 +23,7 @@ export default {
     const labelText = ref(`I want to use InterGalaxy Quickpost\u2122`);
     const isChecked = ref(false);
 
-    const emitState = () => {
+    const emitState = () =>
       emit('newState', {
         id: props.inputId,
         value: isChecked,
@@ -31,15 +31,10 @@ export default {
         isIncorrect: false,
         validate: () => function () {},
       });
-    };
 
-    watch(isChecked, () => {
-      emitState();
-    });
+    watch(isChecked, () => emitState());
 
-    onMounted(() => {
-      emitState();
-    });
+    onMounted(() => emitState());
 
     return { labelText, isChecked };
   },

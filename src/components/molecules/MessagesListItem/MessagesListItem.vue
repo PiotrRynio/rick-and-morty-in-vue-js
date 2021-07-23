@@ -69,9 +69,8 @@ export default {
   setup(props) {
     const characterData = ref({});
 
-    const fetchCharacterFromApi = async () => {
-      characterData.value = await RickAndMortyApi().getCharacter(props.messageState.characterId);
-    };
+    const fetchCharacterFromApi = async () =>
+      (characterData.value = await RickAndMortyApi().getCharacter(props.messageState.characterId));
 
     const getDateText = () => {
       const getDay = () => new Date(props.messageState.date).getDate();

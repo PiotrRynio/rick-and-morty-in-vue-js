@@ -45,22 +45,17 @@ export default {
       emitState();
     };
 
-    const emitState = () => {
+    const emitState = () =>
       emit('newState', {
         id: props.inputId,
         value: message,
         isIncorrect: isIncorrect,
         validate: () => inputValidate(),
       });
-    };
 
-    onMounted(() => {
-      emitState();
-    });
+    onMounted(() => emitState());
 
-    watch(message, () => {
-      inputValidate();
-    });
+    watch(message, () => inputValidate());
 
     return {
       title,

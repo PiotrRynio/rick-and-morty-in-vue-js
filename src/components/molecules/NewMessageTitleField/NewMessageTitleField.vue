@@ -15,6 +15,7 @@
 <script>
 import FormLabel from '@/components/atoms/FormLabel/FormLabel';
 import FormHelperText from '@/components/atoms/FormHelperText/FormHelperText';
+import { onMounted, ref, watch } from '@vue/runtime-core';
 
 export default {
   name: 'NewMessageTitleField',
@@ -22,54 +23,54 @@ export default {
     FormLabel,
     FormHelperText,
   },
-  props: ['inputId'],
-  data() {
-    return {
-      title: 'Title',
-      isIncorrect: false,
-      messageTitle: '',
-      formHelperTextMessage: '',
-    };
-  },
-  watch: {
-    messageTitle() {
-      this.inputValidate();
-    },
-  },
+  props: { inputId: String },
+  emits: ['newState'],
 
-  mounted() {
-    this.emitState();
-  },
+  setup(props, { emit }) {
+    const title = ref('Title');
+    const isIncorrect = ref(false);
+    const messageTitle = ref('');
+    const formHelperTextMessage = ref('');
 
-  methods: {
-    inputValidate() {
+    const inputValidate = () => {
       const format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
-      const isEmptyMessage = this.messageTitle.trim() === '';
-      const isSpecialCharactersInMessage = format.test(this.messageTitle);
-      const isTooShortMessage = this.messageTitle.length < 3;
-      const isTooLongMessage = this.messageTitle.length > 32;
+      const isEmptyMessage = messageTitle.value.trim() === '';
+      const isSpecialCharactersInMessage = format.test(messageTitle.value);
+      const isTooShortMessage = messageTitle.value.length < 3;
+      const isTooLongMessage = messageTitle.value.length > 32;
 
-      this.isIncorrect =
+      isIncorrect.value =
         isEmptyMessage || isSpecialCharactersInMessage || isTooShortMessage || isTooLongMessage;
-      this.formHelperTextMessage = '';
 
-      if (isEmptyMessage) this.formHelperTextMessage = 'Please enter the title';
+      formHelperTextMessage.value = '';
+      if (isEmptyMessage) formHelperTextMessage.value = 'Please enter the title';
       if (isSpecialCharactersInMessage)
-        this.formHelperTextMessage = 'Please enter no special characters';
-      if (isTooShortMessage) this.formHelperTextMessage = 'Please enter min 3 characters title';
-      if (isTooLongMessage) this.formHelperTextMessage = 'Please enter max 32 characters title';
+        formHelperTextMessage.value = 'Please enter no special characters';
+      if (isTooShortMessage) formHelperTextMessage.value = 'Please enter min 3 characters title';
+      if (isTooLongMessage) formHelperTextMessage.value = 'Please enter max 32 characters title';
 
-      this.emitState();
-    },
-    emitState() {
-      this.$emit('newState', {
-        id: this.inputId,
-        value: this.messageTitle,
-        isIncorrect: this.isIncorrect,
-        validate: () => this.inputValidate(),
+      emitState();
+    };
+
+    const emitState = () =>
+      emit('newState', {
+        id: props.inputId,
+        value: messageTitle.value,
+        isIncorrect: isIncorrect.value,
+        validate: () => inputValidate(),
       });
-    },
+
+    onMounted(() => emitState());
+
+    watch(messageTitle, () => inputValidate());
+
+    return {
+      title,
+      isIncorrect,
+      messageTitle,
+      formHelperTextMessage,
+    };
   },
 };
 </script>

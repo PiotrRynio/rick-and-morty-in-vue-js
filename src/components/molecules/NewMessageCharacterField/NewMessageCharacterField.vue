@@ -43,14 +43,13 @@ export default {
       characters.value = await RickAndMortyApi().getCharacters();
     };
 
-    const emitState = () => {
+    const emitState = () =>
       emit('newState', {
         id: props.inputId,
         value: selected,
         isIncorrect: isIncorrect,
         validate: () => inputValidate(),
       });
-    };
 
     const inputValidate = () => {
       const isCharacterSelected = selected.value === '';
@@ -59,9 +58,7 @@ export default {
       emitState();
     };
 
-    watch(selected, () => {
-      inputValidate();
-    });
+    watch(selected, () => inputValidate());
 
     onMounted(() => {
       fetchCharacters();
