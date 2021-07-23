@@ -100,7 +100,7 @@ export default {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-
+    cursor: pointer;
   }
 
   &__title {
