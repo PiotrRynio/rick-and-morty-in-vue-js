@@ -14,7 +14,7 @@
     <NewMessageCharacterField
       class="newMessageSection__inputField"
       @newState="setNewInputState"
-      :input-id="inputId.character"
+      :input-id="inputId.characterId"
     />
     <NewMessageConditionField
       class="newMessageSection__inputField"
@@ -48,7 +48,7 @@ export default {
       inputId: {
         title: 'newMessageTitleField',
         text: 'newMessageTextField',
-        character: 'newMessageCharacterField',
+        characterId: 'newMessageCharacterField',
         condition: 'newMessageConditionField',
       },
       inputsStates: {},
@@ -75,7 +75,7 @@ export default {
       const newData = {
         title: this.inputsStates[this.inputId.title].value,
         message: this.inputsStates[this.inputId.text].value,
-        character: this.inputsStates[this.inputId.character].value,
+        characterId: this.inputsStates[this.inputId.characterId].value,
         isConditionChecked: this.inputsStates[this.inputId.condition].value,
         date: new Date(),
       };

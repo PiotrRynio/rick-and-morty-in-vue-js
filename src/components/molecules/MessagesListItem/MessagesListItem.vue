@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     async fetchCharacterFromApi() {
-      this.characterData = await RickAndMortyApi().getCharacter(this.messageState.character);
+      this.characterData = await RickAndMortyApi().getCharacter(this.messageState.characterId);
     },
   },
 };
