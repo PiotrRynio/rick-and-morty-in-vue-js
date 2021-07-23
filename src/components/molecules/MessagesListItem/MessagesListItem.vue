@@ -53,7 +53,17 @@ import { RickAndMortyApi } from '@/restapi/rick-and-morty/RickAndMortyApi';
 
 export default {
   name: 'MessagesListItem',
-  props: ['messageState', 'isShown', 'showingMessageFunction'],
+  props: {
+    messageState: {
+      characterId: String,
+      message: String,
+      date: Date,
+      title: String,
+      isConditionChecked: Boolean,
+    },
+    isShown: Boolean,
+    showingMessageFunction: Function,
+  },
   mounted() {
     this.fetchCharacterFromApi();
   },
