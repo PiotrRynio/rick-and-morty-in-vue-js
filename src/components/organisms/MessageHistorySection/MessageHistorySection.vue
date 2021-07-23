@@ -37,8 +37,7 @@ export default {
   },
   methods: {
     toggleShownMessageId(newMessageId) {
-      if (this.shownMessageId === newMessageId) this.shownMessageId = '';
-      else this.shownMessageId = newMessageId;
+      this.shownMessageId = this.shownMessageId === newMessageId ? '' : newMessageId;
     },
     loadStorageMessage() {
       return DatabaseApi().getAllMessages();
