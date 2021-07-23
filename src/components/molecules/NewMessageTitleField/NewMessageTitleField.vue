@@ -44,16 +44,22 @@ export default {
   methods: {
     inputValidate() {
       const format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
-      this.isIncorrect = true;
+
+      const isEmptyMessage = this.messageTitle.trim() === '';
+      const isSpecialCharactersInMessage = format.test(this.messageTitle);
+      const isTooShortMessage = this.messageTitle.length < 3;
+      const isTooLongMessage = this.messageTitle.length > 32;
+
+      this.isIncorrect =
+        isEmptyMessage || isSpecialCharactersInMessage || isTooShortMessage || isTooLongMessage;
       this.formHelperTextMessage = '';
-      if (this.messageTitle.trim() === '') this.formHelperTextMessage = 'Please enter the title';
-      else if (format.test(this.messageTitle))
+
+      if (isEmptyMessage) this.formHelperTextMessage = 'Please enter the title';
+      if (isSpecialCharactersInMessage)
         this.formHelperTextMessage = 'Please enter no special characters';
-      else if (this.messageTitle.length < 3)
-        this.formHelperTextMessage = 'Please enter min 3 characters title';
-      else if (this.messageTitle.length > 32)
-        this.formHelperTextMessage = 'Please enter max 32 characters title';
-      else this.isIncorrect = false;
+      if (isTooShortMessage) this.formHelperTextMessage = 'Please enter min 3 characters title';
+      if (isTooLongMessage) this.formHelperTextMessage = 'Please enter max 32 characters title';
+
       this.emitState();
     },
     emitState() {

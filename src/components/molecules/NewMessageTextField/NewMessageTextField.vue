@@ -45,12 +45,14 @@ export default {
 
   methods: {
     inputValidate() {
-      this.isIncorrect = true;
+      const isEmptyMessage = this.message.trim() === '';
+      const isTooLongMessage = this.message.length > 256;
+      this.isIncorrect = isEmptyMessage || isTooLongMessage;
+
       this.formHelperTextMessage = '';
-      if (this.message.trim() === '') this.formHelperTextMessage = 'Please enter the message';
-      else if (this.message.length > 256)
-        this.formHelperTextMessage = 'Please enter max 256 characters';
-      else this.isIncorrect = false;
+      if (isEmptyMessage) this.formHelperTextMessage = 'Please enter the message';
+      if (isTooLongMessage) this.formHelperTextMessage = 'Please enter max 256 characters';
+
       this.emitState();
     },
 
