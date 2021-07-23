@@ -50,10 +50,9 @@ export default {
   },
   methods: {
     inputValidate: function () {
-      this.isIncorrect = true;
-      this.formHelperTextMessage = '';
-      if (this.selected === '') this.formHelperTextMessage = 'Please enter the character';
-      else this.isIncorrect = false;
+      const isCharacterSelected = this.selected === '';
+      this.isIncorrect = isCharacterSelected;
+      this.formHelperTextMessage = isCharacterSelected ? 'Please enter the character' : '';
       this.emitState();
     },
     emitState() {
