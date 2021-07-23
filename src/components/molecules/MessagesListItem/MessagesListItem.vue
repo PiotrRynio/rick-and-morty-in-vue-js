@@ -67,8 +67,8 @@ export default {
       this.characterData = await RickAndMortyApi().getCharacter(this.messageState.characterId);
     },
     getDateText() {
-      const getDay = () => new Date(this.messageState.date).getDay();
-      const getMonth = () => new Date(this.messageState.date).getMonth();
+      const getDay = () => new Date(this.messageState.date).getDate();
+      const getMonth = () => new Date(this.messageState.date).getMonth() + 1;
       const getFullYear = () => new Date(this.messageState.date).getFullYear();
 
       const day = getDay() < 10 ? `0${getDay()}` : getDay();
