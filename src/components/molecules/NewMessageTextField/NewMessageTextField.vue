@@ -1,44 +1,42 @@
 <template>
-
   <div class="newMessageTextField">
-    <form-label :title="title" :is-incorrect="isIncorrect" :input-id="inputId"/>
+    <form-label :title="title" :is-incorrect="isIncorrect" :input-id="inputId" />
     <textarea
-        class="newMessageTextField__input"
-        :class="{'newMessageTextField__input--incorrect': isIncorrect}"
-        v-model="message"
-        placeholder="Enter the title"
-        :id="inputId"
-        type="text"
+      class="newMessageTextField__input"
+      :class="{ 'newMessageTextField__input--incorrect': isIncorrect }"
+      v-model="message"
+      placeholder="Enter the title"
+      :id="inputId"
+      type="text"
     />
-    <form-helper-text :text="formHelperTextMessage"/>
+    <form-helper-text :text="formHelperTextMessage" />
   </div>
 </template>
 
 <script>
-import FormLabel from "@/components/atoms/FormLabel/FormLabel";
-import FormHelperText from "@/components/atoms/FormHelperText/FormHelperText"
+import FormLabel from '@/components/atoms/FormLabel/FormLabel';
+import FormHelperText from '@/components/atoms/FormHelperText/FormHelperText';
 
 export default {
-  name: "NewMessageTextField",
+  name: 'NewMessageTextField',
   components: {
     FormLabel,
-    FormHelperText
+    FormHelperText,
   },
   props: ['inputId'],
   data() {
     return {
-      title: "Message",
+      title: 'Message',
       isIncorrect: false,
-      message: "",
-      formHelperTextMessage: ""
-    }
+      message: '',
+      formHelperTextMessage: '',
+    };
   },
-
 
   watch: {
     message() {
       this.inputValidate();
-    }
+    },
   },
 
   mounted() {
@@ -48,24 +46,24 @@ export default {
   methods: {
     inputValidate() {
       this.isIncorrect = true;
-      this.formHelperTextMessage = "";
-      if (this.message.trim() === "") this.formHelperTextMessage = "Please enter the message";
-      else if (this.message.length > 256) this.formHelperTextMessage = "Please enter max 256 characters";
-      else this.isIncorrect = false
-      this.emitState()
+      this.formHelperTextMessage = '';
+      if (this.message.trim() === '') this.formHelperTextMessage = 'Please enter the message';
+      else if (this.message.length > 256)
+        this.formHelperTextMessage = 'Please enter max 256 characters';
+      else this.isIncorrect = false;
+      this.emitState();
     },
 
     emitState() {
-      this.$emit('newState',
-          {
-            id: this.inputId,
-            value: this.message,
-            isIncorrect: this.isIncorrect,
-            validate: () => this.inputValidate()
-          })
-    }
-  }
-}
+      this.$emit('newState', {
+        id: this.inputId,
+        value: this.message,
+        isIncorrect: this.isIncorrect,
+        validate: () => this.inputValidate(),
+      });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -78,6 +76,5 @@ export default {
     height: 140px;
     resize: none;
   }
-
 }
 </style>

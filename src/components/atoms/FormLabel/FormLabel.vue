@@ -1,18 +1,18 @@
 <template>
-  <label class="formLabel" :class="{'formLabel--incorrect': isIncorrect}" :for="inputId">
+  <label class="formLabel" :class="{ 'formLabel--incorrect': isIncorrect }" :for="inputId">
     {{ title }}
   </label>
 </template>
 
 <script>
 export default {
-  name: "FormLabel",
+  name: 'FormLabel',
   props: {
     title: String,
     isIncorrect: Boolean,
     inputId: String,
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

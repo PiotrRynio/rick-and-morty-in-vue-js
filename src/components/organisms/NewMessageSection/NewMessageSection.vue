@@ -1,31 +1,41 @@
 <template>
   <section class="newMessageSection">
-
-    <SectionTitle class="newMessageSection__title" titleText="Send a new message"/>
-    <MessageTitleInput class="newMessageSection__inputField" @newState="setNewInputState" :input-id="inputId.title"/>
-    <NewMessageTextField class="newMessageSection__inputField" @newState="setNewInputState" :input-id="inputId.text"/>
-    <NewMessageCharacterField class="newMessageSection__inputField"
-                              @newState="setNewInputState"
-                              :input-id="inputId.character"/>
-    <NewMessageConditionField class="newMessageSection__inputField"
-                              @newState="setNewInputState"
-                              :input-id="inputId.condition"/>
+    <SectionTitle class="newMessageSection__title" titleText="Send a new message" />
+    <MessageTitleInput
+      class="newMessageSection__inputField"
+      @newState="setNewInputState"
+      :input-id="inputId.title"
+    />
+    <NewMessageTextField
+      class="newMessageSection__inputField"
+      @newState="setNewInputState"
+      :input-id="inputId.text"
+    />
+    <NewMessageCharacterField
+      class="newMessageSection__inputField"
+      @newState="setNewInputState"
+      :input-id="inputId.character"
+    />
+    <NewMessageConditionField
+      class="newMessageSection__inputField"
+      @newState="setNewInputState"
+      :input-id="inputId.condition"
+    />
     <button class="newMessageSection__button" @click="onClickButton">Send</button>
-
   </section>
 </template>
 
 <script>
-import SectionTitle from '../../atoms/SectionTitle/SectionTitle.vue'
-import MessageTitleInput from '../../molecules/NewMessageTitleField/NewMessageTitleField'
-import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageTextField'
-import NewMessageCharacterField from "@/components/molecules/NewMessageCharacterField/NewMessageCharacterField";
-import NewMessageConditionField from "@/components/molecules/NewMessageConditionField/NewMessageConditionField";
-import router from "@/router/router";
-import {v4 as uuidv4} from 'uuid';
+import SectionTitle from '../../atoms/SectionTitle/SectionTitle.vue';
+import MessageTitleInput from '../../molecules/NewMessageTitleField/NewMessageTitleField';
+import NewMessageTextField from '../../molecules/NewMessageTextField/NewMessageTextField';
+import NewMessageCharacterField from '@/components/molecules/NewMessageCharacterField/NewMessageCharacterField';
+import NewMessageConditionField from '@/components/molecules/NewMessageConditionField/NewMessageConditionField';
+import router from '@/router/router';
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
-  name: "NewMessageSection",
+  name: 'NewMessageSection',
   components: {
     SectionTitle,
     MessageTitleInput,
@@ -36,32 +46,33 @@ export default {
   data() {
     return {
       inputId: {
-        title: "newMessageTitleField",
-        text: "newMessageTextField",
-        character: "newMessageCharacterField",
-        condition: "newMessageConditionField",
+        title: 'newMessageTitleField',
+        text: 'newMessageTextField',
+        character: 'newMessageCharacterField',
+        condition: 'newMessageConditionField',
       },
-      inputsStates: {}
-    }
+      inputsStates: {},
+    };
   },
 
   methods: {
     onClickButton() {
       if (this.isValidationCorrect()) this.sendForm();
-      else console.log("Nie wysłano - Zła walidacja")
+      else console.log('Nie wysłano - Zła walidacja');
     },
     isValidationCorrect() {
       let isAllCorrect = true;
       for (const key in this.inputsStates) {
         const inputStateItem = this.inputsStates[key];
         inputStateItem.validate();
-        const isAllIncorrect = inputStateItem.isIncorrect || (!inputStateItem.value && !inputStateItem.isValueBoolean)
-        if (isAllIncorrect) isAllCorrect = false
+        const isAllIncorrect =
+          inputStateItem.isIncorrect || (!inputStateItem.value && !inputStateItem.isValueBoolean);
+        if (isAllIncorrect) isAllCorrect = false;
       }
       return isAllCorrect;
     },
     sendForm() {
-      const localStorageKey = "rick-and-morty-app-data";
+      const localStorageKey = 'rick-and-morty-app-data';
       const newData = {
         id: uuidv4(),
         title: this.inputsStates[this.inputId.title].value,
@@ -69,19 +80,19 @@ export default {
         character: this.inputsStates[this.inputId.character].value,
         isConditionChecked: this.inputsStates[this.inputId.condition].value,
         date: new Date(),
-      }
+      };
       const storageData = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-      storageData.push(newData)
+      storageData.push(newData);
       localStorage.setItem(localStorageKey, JSON.stringify(storageData));
 
-      router.replace("/history/success")
+      router.replace('/history/success');
     },
 
     setNewInputState(newInputState) {
       this.inputsStates[newInputState.id] = newInputState;
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

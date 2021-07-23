@@ -1,16 +1,14 @@
 <template>
-
   <header class="sectionTitle">
     <h2 class="sectionTitle__text">{{ titleText }}</h2>
   </header>
-
 </template>
 
 <script>
 export default {
-  name: "SectionTitle",
+  name: 'SectionTitle',
   props: ['titleText'],
-}
+};
 </script>
 
 <style scoped lang="scss">
