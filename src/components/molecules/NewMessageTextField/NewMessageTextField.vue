@@ -16,6 +16,7 @@
 <script>
 import FormLabel from '@/components/atoms/FormLabel/FormLabel';
 import FormHelperText from '@/components/atoms/FormHelperText/FormHelperText';
+import { onMounted, ref, watch } from '@vue/runtime-core';
 
 export default {
   name: 'NewMessageTextField',
@@ -23,47 +24,50 @@ export default {
     FormLabel,
     FormHelperText,
   },
-  props: ['inputId'],
-  data() {
-    return {
-      title: 'Message',
-      isIncorrect: false,
-      message: '',
-      formHelperTextMessage: '',
+  props: { inputId: String },
+  emits: ['newState'],
+
+  setup(props, { emit }) {
+    const title = ref('Message');
+    const isIncorrect = ref(false);
+    const message = ref('');
+    const formHelperTextMessage = ref('');
+
+    const inputValidate = () => {
+      const isEmptyMessage = message.value.trim() === '';
+      const isTooLongMessage = message.value.length > 256;
+      isIncorrect.value = isEmptyMessage || isTooLongMessage;
+
+      formHelperTextMessage.value = '';
+      if (isEmptyMessage) formHelperTextMessage.value = 'Please enter the message';
+      if (isTooLongMessage) formHelperTextMessage.value = 'Please enter max 256 characters';
+
+      emitState();
     };
-  },
 
-  watch: {
-    message() {
-      this.inputValidate();
-    },
-  },
-
-  mounted() {
-    this.emitState();
-  },
-
-  methods: {
-    inputValidate() {
-      const isEmptyMessage = this.message.trim() === '';
-      const isTooLongMessage = this.message.length > 256;
-      this.isIncorrect = isEmptyMessage || isTooLongMessage;
-
-      this.formHelperTextMessage = '';
-      if (isEmptyMessage) this.formHelperTextMessage = 'Please enter the message';
-      if (isTooLongMessage) this.formHelperTextMessage = 'Please enter max 256 characters';
-
-      this.emitState();
-    },
-
-    emitState() {
-      this.$emit('newState', {
-        id: this.inputId,
-        value: this.message,
-        isIncorrect: this.isIncorrect,
-        validate: () => this.inputValidate(),
+    const emitState = () => {
+      emit('newState', {
+        id: props.inputId,
+        value: message,
+        isIncorrect: isIncorrect,
+        validate: () => inputValidate(),
       });
-    },
+    };
+
+    onMounted(() => {
+      emitState();
+    });
+
+    watch(message, () => {
+      inputValidate();
+    });
+
+    return {
+      title,
+      isIncorrect,
+      message,
+      formHelperTextMessage,
+    };
   },
 };
 </script>
