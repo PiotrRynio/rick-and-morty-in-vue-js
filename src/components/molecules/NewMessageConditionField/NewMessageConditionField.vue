@@ -12,33 +12,36 @@
 </template>
 
 <script>
+import { onMounted, ref, watch } from '@vue/runtime-core';
+
 export default {
   name: 'NewMessageConditionField',
-  props: ['inputId'],
-  data() {
-    return {
-      labelText: `I want to use InterGalaxy Quickpost\u2122`,
-      isChecked: false,
-    };
-  },
-  watch: {
-    isChecked() {
-      this.emitState();
-    },
-  },
-  mounted() {
-    this.emitState();
-  },
-  methods: {
-    emitState() {
-      this.$emit('newState', {
-        id: this.inputId,
-        value: this.isChecked,
+  props: { inputId: String },
+  emits: ['newState'],
+
+  setup(props, { emit }) {
+    const labelText = ref(`I want to use InterGalaxy Quickpost\u2122`);
+    const isChecked = ref(false);
+
+    const emitState = () => {
+      emit('newState', {
+        id: props.inputId,
+        value: isChecked,
         isValueBoolean: true,
         isIncorrect: false,
         validate: () => function () {},
       });
-    },
+    };
+
+    watch(isChecked, () => {
+      emitState();
+    });
+
+    onMounted(() => {
+      emitState();
+    });
+
+    return { labelText, isChecked };
   },
 };
 </script>

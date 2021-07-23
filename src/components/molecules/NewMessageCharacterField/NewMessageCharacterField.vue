@@ -39,10 +39,6 @@ export default {
     const isIncorrect = ref(false);
     const characters = ref([]);
 
-    watch(selected, () => {
-      inputValidate();
-    });
-
     const fetchCharacters = async () => {
       characters.value = await RickAndMortyApi().getCharacters();
     };
@@ -62,6 +58,10 @@ export default {
       formHelperTextMessage.value = isCharacterSelected ? 'Please enter the character' : '';
       emitState();
     };
+
+    watch(selected, () => {
+      inputValidate();
+    });
 
     onMounted(() => {
       fetchCharacters();

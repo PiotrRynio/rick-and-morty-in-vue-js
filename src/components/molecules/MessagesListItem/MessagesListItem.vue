@@ -73,8 +73,6 @@ export default {
       characterData.value = await RickAndMortyApi().getCharacter(props.messageState.characterId);
     };
 
-    onMounted(fetchCharacterFromApi);
-
     const getDateText = () => {
       const getDay = () => new Date(props.messageState.date).getDate();
       const getMonth = () => new Date(props.messageState.date).getMonth() + 1;
@@ -96,6 +94,8 @@ export default {
 
       return `${hours}:${minutes}`;
     };
+
+    onMounted(fetchCharacterFromApi);
 
     return { characterData, getDateText, getTimeText };
   },
