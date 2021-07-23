@@ -50,6 +50,7 @@
 
 <script>
 import { RickAndMortyApi } from '@/restapi/rick-and-morty/RickAndMortyApi';
+import { onMounted, ref } from '@vue/runtime-core';
 
 export default {
   name: 'MessagesListItem',
@@ -64,38 +65,39 @@ export default {
     isShown: Boolean,
     showingMessageFunction: Function,
   },
-  mounted() {
-    this.fetchCharacterFromApi();
-  },
-  data() {
-    return {
-      characterData: '',
+
+  setup(props) {
+    const characterData = ref({});
+
+    const fetchCharacterFromApi = async () => {
+      characterData.value = await RickAndMortyApi().getCharacter(props.messageState.characterId);
     };
-  },
-  methods: {
-    async fetchCharacterFromApi() {
-      this.characterData = await RickAndMortyApi().getCharacter(this.messageState.characterId);
-    },
-    getDateText() {
-      const getDay = () => new Date(this.messageState.date).getDate();
-      const getMonth = () => new Date(this.messageState.date).getMonth() + 1;
-      const getFullYear = () => new Date(this.messageState.date).getFullYear();
+
+    onMounted(fetchCharacterFromApi);
+
+    const getDateText = () => {
+      const getDay = () => new Date(props.messageState.date).getDate();
+      const getMonth = () => new Date(props.messageState.date).getMonth() + 1;
+      const getFullYear = () => new Date(props.messageState.date).getFullYear();
 
       const day = getDay() < 10 ? `0${getDay()}` : getDay();
       const month = getMonth() < 10 ? `0${getMonth()}` : getMonth();
       const year = getFullYear();
 
       return `${day}.${month}.${year}`;
-    },
-    getTimeText() {
-      const getHours = () => new Date(this.messageState.date).getHours();
-      const getMinutes = () => new Date(this.messageState.date).getMinutes();
+    };
+
+    const getTimeText = () => {
+      const getHours = () => new Date(props.messageState.date).getHours();
+      const getMinutes = () => new Date(props.messageState.date).getMinutes();
 
       const hours = getHours() < 10 ? `0${getHours()}` : getHours();
       const minutes = getMinutes() < 10 ? `0${getMinutes()}` : getMinutes();
 
       return `${hours}:${minutes}`;
-    },
+    };
+
+    return { characterData, getDateText, getTimeText };
   },
 };
 </script>
