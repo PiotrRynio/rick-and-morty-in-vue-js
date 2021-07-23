@@ -58,31 +58,30 @@ export default {
   methods: {
     onClickButton() {
       if (this.isValidationCorrect()) this.sendForm();
-      else console.log('Nie wysłano - Zła walidacja');
     },
     isValidationCorrect() {
       let isAllCorrect = true;
       for (const key in this.inputsStates) {
-        const inputStateItem = this.inputsStates[key];
-        inputStateItem.validate();
-        const isAllIncorrect =
-          inputStateItem.isIncorrect || (!inputStateItem.value && !inputStateItem.isValueBoolean);
+        const { isIncorrect, isValueBoolean, validate, value } = this.inputsStates[key];
+        validate();
+        const isAllIncorrect = isIncorrect || (!value && !isValueBoolean);
         if (isAllIncorrect) isAllCorrect = false;
       }
       return isAllCorrect;
     },
     sendForm() {
+      const { inputsStates, inputId } = this;
+      const { characterId, text, title, condition } = inputId;
       const newData = {
-        title: this.inputsStates[this.inputId.title].value,
-        message: this.inputsStates[this.inputId.text].value,
-        characterId: this.inputsStates[this.inputId.characterId].value,
-        isConditionChecked: this.inputsStates[this.inputId.condition].value,
+        title: inputsStates[title].value,
+        message: inputsStates[text].value,
+        characterId: inputsStates[characterId].value,
+        isConditionChecked: inputsStates[condition].value,
         date: new Date(),
       };
       DatabaseApi().postMessage(newData);
       router.replace('/history/success');
     },
-
     setNewInputState(newInputState) {
       this.inputsStates[newInputState.id] = newInputState;
     },
