@@ -26,7 +26,7 @@
 <script>
 import SectionTitle from '@/components/atoms/SectionTitle/SectionTitle';
 import router from '@/router/router';
-import MessagesListItem from '@/components/molecules/MessagesListItem';
+import MessagesListItem from '@/components/molecules/MessagesListItem/MessagesListItem';
 import { DatabaseApi } from '@/database-connection/database-api';
 
 export default {
