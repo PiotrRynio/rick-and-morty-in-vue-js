@@ -20,7 +20,7 @@
 <script>
 import FormLabel from '@/components/atoms/FormLabel/FormLabel';
 import FormHelperText from '@/components/atoms/FormHelperText/FormHelperText';
-import axios from 'axios';
+import { RickAndMortyApi } from '@/restapi/rick-and-morty/RickAndMortyApi';
 
 export default {
   name: 'NewMessageCharacterField',
@@ -45,7 +45,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchApi();
+    this.fetchCharacters();
     this.emitState();
   },
   methods: {
@@ -64,13 +64,8 @@ export default {
         validate: () => this.inputValidate(),
       });
     },
-    fetchApi() {
-      axios
-        .get('https://rickandmortyapi.com/api/character')
-        .then((response) => response.data)
-        .then((data) => data.results)
-        .then((results) => (this.characters = results))
-        .catch((error) => console.log(error));
+    async fetchCharacters() {
+      this.characters = await RickAndMortyApi().getCharacters();
     },
   },
 };

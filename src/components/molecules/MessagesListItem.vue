@@ -55,19 +55,18 @@
       >
         {{ messageState.message }}
       </article>
-      <!--            <h3 class="messagesListItem__title"> {{ messageState.title }}</h3>-->
     </section>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { RickAndMortyApi } from '@/restapi/rick-and-morty/RickAndMortyApi';
 
 export default {
   name: 'MessagesListItem',
   props: ['messageState', 'isShown', 'showingMessageFunction'],
   mounted() {
-    this.fetchCharacterNameFromApi();
+    this.fetchCharacterFromApi();
   },
   data() {
     return {
@@ -75,16 +74,9 @@ export default {
     };
   },
   methods: {
-    async fetchCharacterNameFromApi() {
-      return await axios
-        .get('https://rickandmortyapi.com/api/character/' + this.messageState.character)
-        .then((response) => response.data)
-        .then((data) => (this.characterData = data))
-        .catch((error) => console.log(error));
+    async fetchCharacterFromApi() {
+      this.characterData = await RickAndMortyApi().getCharacter(this.messageState.character);
     },
-  },
-  date() {
-    return {};
   },
 };
 </script>
