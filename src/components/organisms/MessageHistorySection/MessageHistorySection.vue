@@ -27,6 +27,7 @@
 import SectionTitle from '@/components/atoms/SectionTitle/SectionTitle';
 import router from '@/router/router';
 import MessagesListItem from '@/components/molecules/MessagesListItem';
+import { DatabaseConnection } from '@/database-connection/database-connection';
 
 export default {
   name: 'MessageHistorySection',
@@ -40,8 +41,7 @@ export default {
       else this.shownMessageId = newMessageId;
     },
     loadStorageMessage() {
-      const localStorageKey = 'rick-and-morty-app-data';
-      return JSON.parse(localStorage.getItem(localStorageKey)) || [];
+      return DatabaseConnection().getAllMessages();
     },
   },
   data() {
