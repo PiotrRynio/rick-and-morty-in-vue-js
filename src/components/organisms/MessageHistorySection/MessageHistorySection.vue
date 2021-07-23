@@ -37,46 +37,17 @@ export default {
       if (this.shownMessageId === newMessageId) this.shownMessageId = "";
       else this.shownMessageId = newMessageId;
     },
+    loadStorageMessage() {
+      const localStorageKey = "rick-and-morty-app-data";
+      return JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    },
 
   },
   data() {
     return {
       isAlertShown: router.currentRoute.value.params.information === "success",
       shownMessageId: "0b692f91sc-67e87842ea30",
-      messages: [
-        {
-          character: 15,
-          date: "2021-07-22T21:30:00.763Z",
-          id: "111",
-          isConditionChecked: true,
-          message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie sagittis lorem, ac posuere sem bibendum vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sit amet facilisis justo, nec imperdiet ex. Vestibulum facilisis hendrerit ipsum, et ultricies urna dapibus a. Curabitur viverra odio mollis magna commodo imperdiet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu mauris a nibh sollicitudin luctus vitae sed neque.",
-          title: "To Mr. Meeseeks"
-        },
-        {
-          character: 3,
-          date: "2021-07-22T21:30:00.763Z",
-          id: "0b692f91-b8ba-415f-861c-67e87842ea30",
-          isConditionChecked: true,
-          message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie sagittis lorem, ac posuere sem bibendum vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sit amet facilisis justo, nec imperdiet ex. Vestibulum facilisis hendrerit ipsum, et ultricies urna dapibus a. Curabitur viverra odio mollis magna commodo imperdiet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu mauris a nibh sollicitudin luctus vitae sed neque.",
-          title: "My latest message title"
-        },
-        {
-          character: 5,
-          date: "2021-07-22T21:30:00.763Z",
-          id: "0b692f91sc-67e87842ea30",
-          isConditionChecked: false,
-          message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie sagittis lorem, ac posuere sem bibendum vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sit amet facilisis justo, nec imperdiet ex. Vestibulum facilisis hendrerit ipsum, et ultricies urna dapibus a. Curabitur viverra odio mollis magna commodo imperdiet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu mauris a nibh sollicitudin luctus vitae sed neque.",
-          title: "To my buddy Rick"
-        },
-        {
-          character: 7,
-          date: "2021-07-22T21:30:00.763Z",
-          id: "444",
-          isConditionChecked: false,
-          message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras molestie sagittis lorem, ac posuere sem bibendum vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sit amet facilisis justo, nec imperdiet ex. Vestibulum facilisis hendrerit ipsum, et ultricies urna dapibus a. Curabitur viverra odio mollis magna commodo imperdiet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu mauris a nibh sollicitudin luctus vitae sed neque.",
-          title: "My first message"
-        },
-      ]
+      messages: this.loadStorageMessage(),
     }
   }
 }

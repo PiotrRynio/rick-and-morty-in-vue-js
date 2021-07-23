@@ -73,7 +73,6 @@ export default {
       const storageData = JSON.parse(localStorage.getItem(localStorageKey)) || [];
       storageData.push(newData)
       localStorage.setItem(localStorageKey, JSON.stringify(storageData));
-      console.log(JSON.parse(localStorage.getItem(localStorageKey)) || [])
 
       router.replace("/history/success")
     },
