@@ -17,7 +17,6 @@
         >
           History
         </router-link>
-        <!--        {{ $route.name}}-->
       </nav>
     </div>
 

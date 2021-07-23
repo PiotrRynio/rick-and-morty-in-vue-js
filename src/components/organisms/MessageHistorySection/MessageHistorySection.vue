@@ -28,6 +28,7 @@ import SectionTitle from '@/components/atoms/SectionTitle/SectionTitle';
 import router from '@/router/router';
 import MessagesListItem from '@/components/molecules/MessagesListItem/MessagesListItem';
 import { DatabaseApi } from '@/database-connection/database-api';
+import { ref } from '@vue/runtime-core';
 
 export default {
   name: 'MessageHistorySection',
@@ -35,19 +36,21 @@ export default {
     SectionTitle,
     MessagesListItem,
   },
-  methods: {
-    toggleShownMessageId(newMessageId) {
-      this.shownMessageId = this.shownMessageId === newMessageId ? '' : newMessageId;
-    },
-    loadStorageMessage() {
-      return DatabaseApi().getAllMessages();
-    },
-  },
-  data() {
+  setup() {
+    const isAlertShown = ref(router.currentRoute.value.params.information === 'success');
+    const shownMessageId = ref('');
+    const loadStorageMessage = () => DatabaseApi().getAllMessages();
+    const messages = ref(loadStorageMessage().reverse());
+
+    const toggleShownMessageId = (newMessageId) =>
+      (shownMessageId.value = shownMessageId.value === newMessageId ? '' : newMessageId);
+
     return {
-      isAlertShown: router.currentRoute.value.params.information === 'success',
-      shownMessageId: '',
-      messages: this.loadStorageMessage().reverse(),
+      isAlertShown,
+      shownMessageId,
+      messages,
+      toggleShownMessageId,
+      loadStorageMessage,
     };
   },
 };
