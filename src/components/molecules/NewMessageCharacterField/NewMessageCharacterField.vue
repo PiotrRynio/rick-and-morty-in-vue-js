@@ -21,6 +21,7 @@
 import FormLabel from '@/components/atoms/FormLabel/FormLabel';
 import FormHelperText from '@/components/atoms/FormHelperText/FormHelperText';
 import { RickAndMortyApi } from '@/restapi/rick-and-morty/RickAndMortyApi';
+import { onMounted, ref, watch } from '@vue/runtime-core';
 
 export default {
   name: 'NewMessageCharacterField',
@@ -28,44 +29,52 @@ export default {
     FormLabel,
     FormHelperText,
   },
-  props: ['inputId'],
-  data() {
-    return {
-      title: 'Character',
-      formHelperTextMessage: '',
-      selected: '',
-      isIncorrect: false,
-      characters: [],
-    };
-  },
+  props: { inputId: String },
+  emits: ['newState'],
 
-  watch: {
-    selected() {
-      this.inputValidate();
-    },
-  },
-  mounted() {
-    this.fetchCharacters();
-    this.emitState();
-  },
-  methods: {
-    inputValidate: function () {
-      const isCharacterSelected = this.selected === '';
-      this.isIncorrect = isCharacterSelected;
-      this.formHelperTextMessage = isCharacterSelected ? 'Please enter the character' : '';
-      this.emitState();
-    },
-    emitState() {
-      this.$emit('newState', {
-        id: this.inputId,
-        value: this.selected,
-        isIncorrect: this.isIncorrect,
-        validate: () => this.inputValidate(),
+  setup(props, { emit }) {
+    const title = ref('Character');
+    const formHelperTextMessage = ref('');
+    const selected = ref('');
+    const isIncorrect = ref(false);
+    const characters = ref([]);
+
+    watch(selected, () => {
+      inputValidate();
+    });
+
+    const fetchCharacters = async () => {
+      characters.value = await RickAndMortyApi().getCharacters();
+    };
+
+    const emitState = () => {
+      emit('newState', {
+        id: props.inputId,
+        value: selected,
+        isIncorrect: isIncorrect,
+        validate: () => inputValidate(),
       });
-    },
-    async fetchCharacters() {
-      this.characters = await RickAndMortyApi().getCharacters();
-    },
+    };
+
+    const inputValidate = () => {
+      const isCharacterSelected = selected.value === '';
+      isIncorrect.value = isCharacterSelected;
+      formHelperTextMessage.value = isCharacterSelected ? 'Please enter the character' : '';
+      emitState();
+    };
+
+    onMounted(() => {
+      fetchCharacters();
+      emitState();
+    });
+
+    return {
+      title,
+      formHelperTextMessage,
+      selected,
+      isIncorrect,
+      characters,
+    };
   },
 };
 </script>
