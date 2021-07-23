@@ -48,7 +48,7 @@ export default {
     return {
       isAlertShown: router.currentRoute.value.params.information === 'success',
       shownMessageId: '',
-      messages: this.loadStorageMessage(),
+      messages: this.loadStorageMessage().reverse(),
     };
   },
 };
