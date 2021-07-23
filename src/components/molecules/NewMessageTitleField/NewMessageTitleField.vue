@@ -44,7 +44,7 @@ export default {
 
   methods: {
     inputValidate() {
-      const format = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+      const format = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
       this.isIncorrect = true;
       this.formHelperTextMessage = "";
       if (this.messageTitle.trim() === "") this.formHelperTextMessage = "Please enter the title";
