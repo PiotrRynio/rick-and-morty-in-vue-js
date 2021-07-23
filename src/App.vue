@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <RickAndMorty/>
+    <RickAndMorty />
   </div>
 </template>
 
 <script>
-
-import RickAndMorty from "@/components/pages/RickAndMorty/RickAndMorty";
+import RickAndMorty from '@/components/pages/RickAndMorty/RickAndMorty';
 
 export default {
   name: 'App',
   components: {
-    RickAndMorty
-  }
-}
+    RickAndMorty,
+  },
+};
 </script>
 
 <style lang="scss">

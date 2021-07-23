@@ -1,28 +1,30 @@
-import { createWebHistory, createRouter } from "vue-router";
-import NewMessageSection from "@/components/organisms/NewMessageSection/NewMessageSection";
-import MessageHistorySection from "@/components/organisms/MessageHistorySection/MessageHistorySection";
+import { createWebHistory, createRouter } from 'vue-router';
+import NewMessageSection from '@/components/organisms/NewMessageSection/NewMessageSection';
+import MessageHistorySection from '@/components/organisms/MessageHistorySection/MessageHistorySection';
 
 const history = createWebHistory();
 
 const routes = [
   {
-    path: "/:catchAll(.*)",
-    name: "NotFound",
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
     component: NewMessageSection,
-    alias: '/'
-  }, {
-    path: "/",
-    name: "Home",
+    alias: '/',
+  },
+  {
+    path: '/',
+    name: 'Home',
     component: NewMessageSection,
   },
   {
-    path: "/history/:information",
-    name: "HistoryWithInformation",
+    path: '/history/:information',
+    name: 'HistoryWithInformation',
     component: MessageHistorySection,
-    alias: '/history'
-  }, {
-    path: "/history",
-    name: "History",
+    alias: '/history',
+  },
+  {
+    path: '/history',
+    name: 'History',
     component: MessageHistorySection,
   },
 ];

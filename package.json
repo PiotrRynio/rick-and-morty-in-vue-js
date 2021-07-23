@@ -52,6 +52,6 @@
     "not dead"
   ],
   "lint-staged": {
-    "*.{jsx, tsx, ts, js,css,md}": "prettier --write"
+    "*.{jsx,tsx,ts,js,css,md,vue}": "prettier --write"
   }
 }
