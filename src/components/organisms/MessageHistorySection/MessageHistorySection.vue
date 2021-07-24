@@ -5,7 +5,16 @@
       :class="{ 'messageHistorySection__alert--shown': isAlertShown }"
       titleText="Message sent successfully"
     />
+
     <SectionTitle class="messageHistorySection__title" titleText="Message history" />
+
+    <router-link to="/" class="messageHistorySection__router">
+      <SectionTitle
+        class="messageHistorySection__alert"
+        :class="{ 'messageHistorySection__alert--shown': messages.length === 0 }"
+        titleText="Empty list - add new message!"
+      />
+    </router-link>
 
     <ul class="messageHistorySection__messagesList">
       <li
@@ -62,6 +71,11 @@ export default {
   width: 100%;
   padding: 24px 20px 0;
   flex-flow: column nowrap;
+
+  &__router {
+    display: block;
+    text-decoration: none;
+  }
 
   &__alert {
     display: none;
