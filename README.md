@@ -1,5 +1,7 @@
 # rick-and-morty-in-vue-js
 
+**Demo on Netlify:** [https://adoring-fermi-c8358c.netlify.app/](https://adoring-fermi-c8358c.netlify.app/)
+
 ## Overview
 
 **RickyAndMorphyApp** is a frontend application created in Vue framework. User would send the message to a virtual movie
@@ -7,7 +9,7 @@ character and read previous sent messages. Date are storage in your Local Storag
 from API. The application validates the data. Project is created pixel-perfect implementation for both mobile and
 desktop layouts in Figma. App is full responsive. CSS Frameworks are not used. What's your message?
 
-**RaM API URL**: https://rickandmortyapi.com/documentation/#rest
+**RaM API URL:** [https://rickandmortyapi.com/documentation/#rest](https://rickandmortyapi.com/documentation/#rest)
 
 ###### The following technologies/library/methodology were used:
 
